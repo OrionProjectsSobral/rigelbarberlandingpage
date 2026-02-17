@@ -56,7 +56,7 @@ const Sobre = () => {
                             </h1>
 
                             <p className="text-text-secondary text-lg md:text-xl font-medium leading-relaxed max-w-[700px] border-l-2 border-r-2 border-border px-8">
-                                A span é uma empresa de tecnologia criada para facilitar a
+                                A Orion é uma empresa de tecnologia criada para facilitar a
                                 gestão de comerciantes de todos os níveis — desde quem está
                                 começando e enfrenta desafios diários até empresários já
                                 consolidados no mercado.

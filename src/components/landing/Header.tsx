@@ -8,7 +8,7 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/90 backdrop-blur-sm">
       <div className="px-6 md:px-10 py-4 flex items-center justify-between max-w-[1400px] mx-auto w-full">
-        <div className="flex items-center gap-3">
+        <Link to="/" className="flex items-center gap-3">
           <div className="text-primary">
             <svg fill="none" height="28" viewBox="0 0 48 48" width="28" xmlns="http://www.w3.org/2000/svg">
               <rect height="40" stroke="currentColor" strokeWidth="2" width="40" x="4" y="4"></rect>
@@ -16,17 +16,17 @@ const Header = () => {
             </svg>
           </div>
           <h2 className="text-foreground text-xl font-bold tracking-tighter uppercase">RigelBarber</h2>
-        </div>
+        </Link>
 
         <div className="hidden md:flex flex-1 justify-end gap-10 items-center">
           <nav className="flex items-center gap-10">
-            <a className="text-foreground text-xs font-bold uppercase tracking-widest hover:text-primary transition-colors" href="#funcionalidades">
+            <a className="text-foreground text-xs font-bold uppercase tracking-widest hover:text-primary transition-colors" href="/#funcionalidades">
               Funcionalidades
             </a>
-            <a className="text-foreground text-xs font-bold uppercase tracking-widest hover:text-primary transition-colors" href="#sistema">
+            <a className="text-foreground text-xs font-bold uppercase tracking-widest hover:text-primary transition-colors" href="/#sistema">
               Sistema
             </a>
-            <a className="text-foreground text-xs font-bold uppercase tracking-widest hover:text-primary transition-colors" href="#precos">
+            <a className="text-foreground text-xs font-bold uppercase tracking-widest hover:text-primary transition-colors" href="/#precos">
               Preços
             </a>
             <Link className="text-foreground text-xs font-bold uppercase tracking-widest hover:text-primary transition-colors" to="/sobre">
@@ -50,13 +50,13 @@ const Header = () => {
       {mobileMenuOpen && (
         <div className="md:hidden border-t border-border bg-background px-6 py-6 flex flex-col gap-6">
           <nav className="flex flex-col gap-4">
-            <a className="text-foreground text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors" href="#funcionalidades">
+            <a className="text-foreground text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors" href="/#funcionalidades">
               Funcionalidades
             </a>
-            <a className="text-foreground text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors" href="#sistema">
+            <a className="text-foreground text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors" href="/#sistema">
               Sistema
             </a>
-            <a className="text-foreground text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors" href="#precos">
+            <a className="text-foreground text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors" href="/#precos">
               Preços
             </a>
             <Link className="text-foreground text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors" to="/sobre">
