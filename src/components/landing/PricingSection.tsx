@@ -14,7 +14,7 @@ const plans = [
       "Relatórios básicos",
       "Suporte por email",
     ],
-    cta: "Começar Grátis",
+    cta: "Começar Agora",
     popular: false,
   },
   {
@@ -31,7 +31,6 @@ const plans = [
       "Integração Google Calendar",
       "Suporte prioritário",
     ],
-    cta: "Teste Grátis 14 Dias",
     popular: true,
   },
   {

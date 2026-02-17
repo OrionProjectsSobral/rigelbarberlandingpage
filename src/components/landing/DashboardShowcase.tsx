@@ -146,7 +146,7 @@ const DashboardShowcase = () => {
             100% Responsivo • Acesse de qualquer lugar
           </p>
           <button className="group flex items-center gap-4 text-primary text-xs font-black uppercase tracking-widest border-b-2 border-primary pb-2 hover:text-foreground hover:border-foreground transition-all">
-            Experimente Grátis
+            Experimente Agora
             <span className="group-hover:translate-x-2 transition-transform">→</span>
           </button>
         </motion.div>
