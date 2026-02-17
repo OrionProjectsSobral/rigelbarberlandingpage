@@ -31,6 +31,7 @@ const plans = [
       "Integração Google Calendar",
       "Suporte prioritário",
     ],
+    cta: "Falar com Especialista",
     popular: true,
   },
   {

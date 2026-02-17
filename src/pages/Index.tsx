@@ -5,6 +5,7 @@ import DashboardShowcase from "@/components/landing/DashboardShowcase";
 import BookingSection from "@/components/landing/BookingSection";
 import FinancialSection from "@/components/landing/FinancialSection";
 import PricingSection from "@/components/landing/PricingSection";
+import FAQSection from "@/components/landing/FAQSection";
 import CTASection from "@/components/landing/CTASection";
 import Footer from "@/components/landing/Footer";
 
@@ -19,6 +20,7 @@ const Index = () => {
         <BookingSection />
         <FinancialSection />
         <PricingSection />
+        <FAQSection />
         <CTASection />
       </main>
       <Footer />
