@@ -24,13 +24,11 @@ const CTASection = () => {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
-            Criar Conta Grátis
+            Criar Conta Agora
           </motion.button>
         </div>
         
-        <p className="text-[10px] font-black uppercase tracking-[0.3em] text-text-secondary">
-          Nenhum cartão de crédito necessário para começar.
-        </p>
+
       </motion.div>
     </section>
   );

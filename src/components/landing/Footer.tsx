@@ -9,7 +9,7 @@ const Footer = () => {
                 <rect height="40" stroke="currentColor" strokeWidth="3" width="40" x="4" y="4"></rect>
               </svg>
             </div>
-            <h2 className="text-xl font-black uppercase tracking-tighter">BarberPro</h2>
+            <h2 className="text-xl font-black uppercase tracking-tighter">RigelBarber</h2>
           </div>
           <p className="text-text-secondary text-xs font-bold uppercase tracking-widest max-w-[300px] leading-relaxed">
             A plataforma completa para gestão e crescimento de barbearias.
@@ -29,7 +29,7 @@ const Footer = () => {
         </div>
         
         <div className="text-text-secondary text-[10px] font-black uppercase tracking-widest">
-          © 2024 BarberPro. Todos os direitos reservados.
+          © 2024 RigelBarber. Todos os direitos reservados.
         </div>
       </div>
     </footer>

@@ -14,7 +14,7 @@ const Header = () => {
               <path d="M12 12H36M12 24H36M12 36H24" stroke="currentColor" strokeLinecap="square" strokeWidth="2"></path>
             </svg>
           </div>
-          <h2 className="text-foreground text-xl font-bold tracking-tighter uppercase">BarberPro</h2>
+          <h2 className="text-foreground text-xl font-bold tracking-tighter uppercase">RigelBarber</h2>
         </div>
         
         <div className="hidden md:flex flex-1 justify-end gap-10 items-center">

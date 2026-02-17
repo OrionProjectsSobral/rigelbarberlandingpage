@@ -79,7 +79,7 @@ const DashboardShowcase = () => {
                 </div>
                 <div className="flex-1 flex justify-center">
                   <div className="bg-muted px-3 md:px-4 py-1 text-[8px] md:text-[10px] font-bold uppercase tracking-widest text-text-secondary">
-                    barberpro.app/dashboard
+                    rigelbarber.app/dashboard
                   </div>
                 </div>
               </div>

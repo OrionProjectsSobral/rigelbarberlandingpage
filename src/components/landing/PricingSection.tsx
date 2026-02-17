@@ -155,18 +155,7 @@ const PricingSection = () => {
           ))}
         </div>
 
-        {/* Bottom note */}
-        <motion.div 
-          className="text-center"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-        >
-          <p className="text-text-secondary text-xs font-bold uppercase tracking-widest">
-            Todos os planos incluem teste grátis de 14 dias • Sem necessidade de cartão de crédito
-          </p>
-        </motion.div>
+        
       </div>
     </section>
   );
