@@ -1,18 +1,387 @@
+import { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
-import financialDashboard from "@/assets/financial-dashboard.jpg";
+import {
+  ArrowRight,
+  DollarSign,
+  TrendingUp,
+  TrendingDown,
+  Users,
+  Ticket,
+  Crown,
+  Star,
+  CalendarDays,
+  ChevronDown,
+} from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  type CarouselApi,
+} from "@/components/ui/carousel";
 
 const stats = [
   { value: "+30%", label: "Aumento de Receita" },
   { value: "-5h", label: "Tempo Admin/Semana" },
 ];
 
+/* ============ TAB CONFIG ============ */
+
+const tabLabels = ["Visão Geral", "Equipe", "Serviços", "Produtos"];
+
+/* ============ SHARED HEADER ============ */
+
+const DashHeader = () => (
+  <div className="flex items-center justify-between px-5 pt-5 pb-3">
+    <div>
+      <h3 className="text-foreground text-sm font-black">Estatísticas</h3>
+      <p className="text-primary text-[8px] font-medium">
+        Acompanhe o desempenho do seu negócio
+      </p>
+    </div>
+    <div className="flex items-center gap-1.5 border border-border rounded-sm px-3 py-1.5 text-text-secondary text-[8px] font-bold">
+      <CalendarDays size={10} />
+      Últimos 30 dias
+      <ChevronDown size={10} />
+    </div>
+  </div>
+);
+
+/* ============ TAB BAR ============ */
+
+const TabBar = ({ active }: { active: number }) => (
+  <div className="grid grid-cols-4 mx-4 mb-4 bg-surface rounded-sm overflow-hidden border border-border">
+    {tabLabels.map((tab, i) => (
+      <div
+        key={tab}
+        className={`py-2 text-center text-[8px] font-bold uppercase tracking-wider transition-all ${i === active
+            ? "bg-primary text-primary-foreground"
+            : "text-text-secondary"
+          }`}
+      >
+        {tab}
+      </div>
+    ))}
+  </div>
+);
+
+/* ============ SLIDE 1 — VISÃO GERAL ============ */
+
+const SlideVisaoGeral = () => (
+  <div className="flex flex-col h-full bg-background border border-border rounded-md overflow-hidden">
+    <DashHeader />
+    <TabBar active={0} />
+
+    <div className="flex-1 px-4 pb-4 flex flex-col gap-3 overflow-y-auto scrollbar-thin">
+      {/* KPI Cards */}
+      <div className="grid grid-cols-5 gap-2">
+        {[
+          { label: "Faturamento Bruto", value: "R$ 26.046,00", icon: DollarSign, change: "+100,0%", sub: "vs período anterior", color: "text-primary" },
+          { label: "Despesas + Comissões", value: "- R$ 9.434,20", icon: TrendingDown, change: null, sub: "Despesas: R$ 420 | Comissões: R$ 9.014,2", color: "text-destructive" },
+          { label: "Lucro Líquido", value: "R$ 16.611,80", icon: TrendingUp, change: null, sub: "Receita - Comissões - Despesas", color: "text-primary" },
+          { label: "Total de Atendimentos", value: "6", icon: Users, change: "+100,0%", sub: "vs período anterior", color: "text-purple-400" },
+          { label: "Ticket Médio", value: "R$ 4.341,00", icon: Ticket, change: "+100,0%", sub: "vs período anterior", color: "text-primary" },
+        ].map((kpi) => {
+          const Icon = kpi.icon;
+          return (
+            <div key={kpi.label} className="border border-border rounded-sm p-2.5 flex flex-col gap-1.5">
+              <div className="flex items-center justify-between">
+                <span className="text-text-secondary text-[6px] font-bold uppercase tracking-wider leading-tight">{kpi.label}</span>
+                <Icon size={10} className={kpi.color} />
+              </div>
+              <span className={`${kpi.color} text-[11px] font-black tracking-tight`}>{kpi.value}</span>
+              {kpi.change ? (
+                <span className="text-primary text-[6px] font-medium flex items-center gap-0.5">
+                  <TrendingUp size={7} /> {kpi.change} {kpi.sub}
+                </span>
+              ) : (
+                <span className="text-text-secondary text-[5px] font-medium">{kpi.sub}</span>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Revenue Chart */}
+      <div className="border border-border rounded-sm p-3 flex-1">
+        <div className="flex flex-col gap-0.5 mb-3">
+          <span className="text-foreground text-[9px] font-black">Tendência de Faturamento</span>
+          <span className="text-text-secondary text-[7px] font-medium">19/01/26 - 17/02/26</span>
+        </div>
+        <div className="relative h-28 flex items-end">
+          <div className="absolute left-0 top-0 bottom-0 flex flex-col justify-between text-text-secondary text-[6px] font-bold pr-2">
+            <span>R$28000</span><span>R$21000</span><span>R$14000</span><span>R$7000</span><span>R$0</span>
+          </div>
+          <div className="ml-10 flex-1 h-full relative border-l border-b border-border">
+            <div className="absolute inset-0 grid grid-rows-4">
+              {[0, 1, 2, 3].map((i) => (<div key={i} className="border-t border-border/30" />))}
+            </div>
+            <div className="absolute left-1/2 top-[15%] w-2.5 h-2.5 bg-primary rounded-full" />
+            <div className="absolute bottom-0 left-1/2 text-text-secondary text-[6px] font-bold -translate-x-1/2">16/02</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+/* ============ SLIDE 2 — EQUIPE ============ */
+
+const SlideEquipe = () => {
+  const teamData = [
+    { name: "Carlos André Monteiro", value: 12000, pct: 100 },
+    { name: "Marcelo Henrique", value: 11000, pct: 92 },
+    { name: "Pedro Teixeira", value: 2000, pct: 17 }
+  ];
+
+  return (
+    <div className="flex flex-col h-full bg-background border border-border rounded-md overflow-hidden">
+      <DashHeader />
+      <TabBar active={1} />
+      <div className="flex-1 px-4 pb-4 flex flex-col gap-3 overflow-y-auto scrollbar-thin">
+        {/* Horizontal Bar Chart */}
+        <div className="border border-border rounded-sm p-3">
+          <div className="flex flex-col gap-0.5 mb-3">
+            <span className="text-foreground text-[9px] font-black">Faturamento por Profissional</span>
+            <span className="text-text-secondary text-[7px] font-medium">19/01/26 - 17/02/26</span>
+          </div>
+          <div className="flex flex-col gap-2">
+            {teamData.map((p) => (
+              <div key={p.name} className="flex items-center gap-3">
+                <span className="text-foreground text-[7px] font-bold w-20 text-right truncate">{p.name}</span>
+                <div className="flex-1 h-5 bg-surface rounded-sm overflow-hidden">
+                  <div className="h-full bg-primary rounded-sm" style={{ width: `${p.pct}%` }} />
+                </div>
+              </div>
+            ))}
+            <div className="flex justify-between pl-[calc(80px+12px)] text-text-secondary text-[6px] font-bold mt-1">
+              <span>R$0</span><span>R$3000</span><span>R$6000</span><span>R$9000</span><span>R$12000</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Performance Table */}
+        <div className="border border-border rounded-sm p-3">
+          <div className="flex flex-col gap-0.5 mb-3">
+            <span className="text-foreground text-[9px] font-black">Desempenho Detalhado</span>
+            <span className="text-text-secondary text-[7px] font-medium">Ranking por faturamento gerado</span>
+          </div>
+          <table className="w-full">
+            <thead>
+              <tr className="text-text-secondary text-[7px] font-bold uppercase tracking-wider border-b border-border">
+                <th className="text-left pb-2">Profissional</th>
+                <th className="text-center pb-2">Qtd. Cortes</th>
+                <th className="text-center pb-2">Faturamento</th>
+                <th className="text-right pb-2">Comissão</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                { name: "Pablo Henrique", cuts: 1, revenue: "R$ 12.000", commission: "R$ 6.000", rank: 1 },
+                { name: "Gabe", cuts: 2, revenue: "R$ 11.000", commission: "R$ 1.100", rank: 2 },
+                { name: "Zulio", cuts: 2, revenue: "R$ 2.000", commission: "R$ 1.000", rank: 3 },
+              ].map((row) => (
+                <tr key={row.name} className="border-b border-border/30">
+                  <td className="py-2">
+                    <div className="flex items-center gap-2">
+                      {row.rank === 1 && <Crown size={10} className="text-primary" />}
+                      <div className="w-5 h-5 rounded-full bg-muted border border-border flex items-center justify-center text-primary text-[7px] font-black">{row.name.charAt(0)}</div>
+                      <span className="text-foreground text-[8px] font-bold">{row.name}</span>
+                    </div>
+                  </td>
+                  <td className="text-center text-foreground text-[8px] font-medium">{row.cuts}</td>
+                  <td className="text-center text-primary text-[8px] font-bold">{row.revenue}</td>
+                  <td className="text-right text-foreground text-[8px] font-medium">{row.commission}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/* ============ SLIDE 3 — SERVIÇOS ============ */
+
+const SlideServicos = () => (
+  <div className="flex flex-col h-full bg-background border border-border rounded-md overflow-hidden">
+    <DashHeader />
+    <TabBar active={2} />
+    <div className="flex-1 px-4 pb-4 flex flex-col gap-3 overflow-y-auto scrollbar-thin">
+      {/* Donut Chart */}
+      <div className="border border-border rounded-sm p-3">
+        <div className="flex flex-col gap-0.5 mb-3">
+          <span className="text-foreground text-[9px] font-black">Distribuição de Serviços</span>
+          <span className="text-text-secondary text-[7px] font-medium">19/01/26 - 17/02/26</span>
+        </div>
+        <div className="flex items-center justify-center gap-6">
+          <div className="border border-border rounded-sm px-2 py-1 text-[7px] font-bold text-foreground">Corte Degradê · 67%</div>
+          <div className="relative w-24 h-24">
+            <svg viewBox="0 0 100 100" className="w-full h-full -rotate-90">
+              <circle cx="50" cy="50" r="35" fill="none" stroke="hsl(var(--primary))" strokeWidth="14" strokeDasharray={`${67 * 2.2} ${100 * 2.2}`} />
+              <circle cx="50" cy="50" r="35" fill="none" stroke="#a855f7" strokeWidth="14" strokeDasharray={`${17 * 2.2} ${100 * 2.2}`} strokeDashoffset={`${-67 * 2.2}`} />
+              <circle cx="50" cy="50" r="35" fill="none" stroke="#38bdf8" strokeWidth="14" strokeDasharray={`${16 * 2.2} ${100 * 2.2}`} strokeDashoffset={`${-(67 + 17) * 2.2}`} />
+            </svg>
+            <div className="absolute inset-0 flex flex-col items-center justify-center">
+              <span className="text-primary text-[10px] font-black">67%</span>
+            </div>
+          </div>
+        </div>
+        <div className="flex items-center justify-center gap-4 mt-3">
+          <div className="flex items-center gap-1.5"><div className="w-2 h-2 bg-primary rounded-full" /><span className="text-text-secondary text-[7px] font-medium">Corte Degradê</span></div>
+          <div className="flex items-center gap-1.5"><div className="w-2 h-2 bg-purple-400 rounded-full" /><span className="text-text-secondary text-[7px] font-medium">Barba Completa</span></div>
+          <div className="flex items-center gap-1.5"><div className="w-2 h-2 bg-sky-400 rounded-full" /><span className="text-text-secondary text-[7px] font-medium">Corte + Barba</span></div>
+        </div>
+      </div>
+
+      {/* Highlight cards */}
+      <div className="grid grid-cols-2 gap-2">
+        <div className="border border-border rounded-sm p-3 flex flex-col gap-1.5">
+          <div className="flex items-center gap-1.5 text-text-secondary text-[7px] font-bold"><Star size={9} className="text-primary" /> Carro Chefe</div>
+          <span className="text-primary text-[10px] font-black">Corte Degradê</span>
+          <span className="text-text-secondary text-[7px] font-medium">4 agendamentos (67% do total)</span>
+          <span className="px-2 py-0.5 bg-primary/10 text-primary text-[6px] font-bold rounded-sm w-fit">Mais Popular</span>
+        </div>
+        <div className="border border-border rounded-sm p-3 flex flex-col gap-1.5">
+          <div className="flex items-center gap-1.5 text-text-secondary text-[7px] font-bold"><DollarSign size={9} className="text-primary" /> Maior Lucratividade</div>
+          <span className="text-primary text-[10px] font-black">Barba Completa</span>
+          <span className="text-text-secondary text-[7px] font-medium">R$ 12.000 em receita</span>
+          <span className="px-2 py-0.5 bg-sky-400/10 text-sky-400 text-[6px] font-bold rounded-sm w-fit">Alto Valor</span>
+        </div>
+      </div>
+
+      {/* Service Details */}
+      <div className="border border-border rounded-sm p-3">
+        <div className="flex flex-col gap-0.5 mb-3">
+          <span className="text-foreground text-[9px] font-black">Detalhamento de Serviços</span>
+          <span className="text-text-secondary text-[7px] font-medium">Ranking por quantidade de agendamentos</span>
+        </div>
+        <div className="flex flex-col gap-2">
+          {[
+            { name: "Corte Degradê", count: 4, value: "4.070", pct: 100, color: "bg-primary" },
+            { name: "Barba Completa", count: 1, value: "1.070", pct: 26, color: "bg-primary" },
+            { name: "Corte + Barba", count: 1, value: "1.070", pct: 26, color: "bg-primary" },
+          ].map((s) => (
+            <div key={s.name} className="flex items-center gap-2">
+              <span className="text-foreground text-[7px] font-bold"># {s.count}</span>
+              <span className="text-foreground text-[7px] font-medium flex-1">{s.name}</span>
+              <div className="w-32 h-2 bg-surface rounded-full overflow-hidden">
+                <div className={`h-full ${s.color} rounded-full`} style={{ width: `${s.pct}%` }} />
+              </div>
+              <span className="text-primary text-[7px] font-bold w-12 text-right">R${s.value}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+/* ============ SLIDE 4 — PRODUTOS ============ */
+
+const SlideProdutos = () => (
+  <div className="flex flex-col h-full bg-background border border-border rounded-md overflow-hidden">
+    <DashHeader />
+    <TabBar active={3} />
+    <div className="flex-1 px-4 pb-4 flex flex-col gap-3 overflow-y-auto scrollbar-thin">
+      {/* Horizontal Bar Chart */}
+      <div className="border border-border rounded-sm p-3">
+        <div className="flex flex-col gap-0.5 mb-3">
+          <span className="text-foreground text-[9px] font-black">Top 5 Produtos Mais Vendidos</span>
+          <span className="text-text-secondary text-[7px] font-medium">19/01/26 - 17/02/26</span>
+        </div>
+        <div className="flex flex-col gap-2">
+          {[
+            { name: "Pomada Modeladora", value: 3, pct: 100 },
+            { name: "Óleo para Barba", value: 1, pct: 33 },
+          ].map((p) => (
+            <div key={p.name} className="flex items-center gap-3">
+              <span className="text-foreground text-[7px] font-bold w-24 text-right truncate">{p.name}</span>
+              <div className="flex-1 h-5 bg-surface rounded-sm overflow-hidden">
+                <div className="h-full bg-sky-400 rounded-sm" style={{ width: `${p.pct}%` }} />
+              </div>
+            </div>
+          ))}
+          <div className="flex justify-between pl-[calc(96px+12px)] text-text-secondary text-[6px] font-bold mt-1">
+            <span>0</span><span>0.75</span><span>1.5</span><span>2.25</span><span>3</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Sales Table */}
+      <div className="border border-border rounded-sm p-3">
+        <div className="flex flex-col gap-0.5 mb-3">
+          <span className="text-foreground text-[9px] font-black">Desempenho de Vendas</span>
+          <span className="text-text-secondary text-[7px] font-medium">Ranking por quantidade vendida</span>
+        </div>
+        <table className="w-full">
+          <thead>
+            <tr className="text-text-secondary text-[7px] font-bold uppercase tracking-wider border-b border-border">
+              <th className="text-left pb-2">Produto</th>
+              <th className="text-center pb-2">Vendidos</th>
+              <th className="text-center pb-2">Receita</th>
+              <th className="text-right pb-2">Estoque</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              { name: "Pomada Modeladora", sold: 3, revenue: "R$ 36", stock: 3, stockLow: true },
+              { name: "Óleo para Barba", sold: 1, revenue: "R$ 10", stock: 8, stockLow: true },
+            ].map((row) => (
+              <tr key={row.name} className="border-b border-border/30">
+                <td className="py-2 text-foreground text-[8px] font-bold">{row.name}</td>
+                <td className="text-center text-foreground text-[8px] font-bold">{row.sold}</td>
+                <td className="text-center text-primary text-[8px] font-bold">{row.revenue}</td>
+                <td className="text-right">
+                  <span className={`px-2 py-0.5 text-[7px] font-bold rounded-full ${row.stockLow ? "bg-destructive/20 text-destructive" : "bg-primary/10 text-primary"}`}>
+                    {row.stock} un
+                  </span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+);
+
+/* ============ SLIDES CONFIG ============ */
+
+const slides = [
+  { component: SlideVisaoGeral, label: "Visão Geral" },
+  { component: SlideEquipe, label: "Equipe" },
+  { component: SlideServicos, label: "Serviços" },
+  { component: SlideProdutos, label: "Produtos" },
+];
+
+/* ============ MAIN COMPONENT ============ */
+
 const FinancialSection = () => {
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    if (!api) return;
+    setCurrent(api.selectedScrollSnap());
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap());
+    });
+  }, [api]);
+
+  const scrollTo = useCallback(
+    (index: number) => {
+      api?.scrollTo(index);
+    },
+    [api]
+  );
+
   return (
     <section className="w-full py-24 px-6 bg-surface flex justify-center data-grid border-y border-border">
-      <div className="max-w-[1200px] w-full flex flex-col-reverse md:flex-row gap-16 md:gap-24 items-center">
-        <motion.div 
-          className="flex flex-col gap-8 w-full md:w-1/2"
+      <div className="max-w-[1200px] w-full flex flex-col md:flex-row gap-16 md:gap-12 items-center">
+        {/* Left — text content */}
+        <motion.div
+          className="flex flex-col gap-8 w-full md:w-[40%]"
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -22,20 +391,22 @@ const FinancialSection = () => {
             <span className="w-12 h-[1px] bg-primary"></span>
             Gestão Inteligente
           </div>
-          
+
           <h2 className="text-foreground text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none">
             Controle Financeiro Total
           </h2>
-          
+
           <p className="text-text-secondary text-lg leading-relaxed font-medium">
-            Acompanhe o fluxo de caixa, calcule comissões automaticamente e visualize o crescimento do seu negócio em tempo real. Tome decisões baseadas em dados, não em achismos.
+            Acompanhe o fluxo de caixa, calcule comissões automaticamente e
+            visualize o crescimento do seu negócio em tempo real. Tome decisões
+            baseadas em dados, não em achismos.
           </p>
-          
+
           <div className="grid grid-cols-2 gap-0 mt-4 border border-border bg-background">
             {stats.map((stat, index) => (
-              <div 
-                key={stat.label} 
-                className={`flex flex-col gap-2 p-8 ${index === 0 ? 'border-r border-border' : ''}`}
+              <div
+                key={stat.label}
+                className={`flex flex-col gap-2 p-8 ${index === 0 ? "border-r border-border" : ""}`}
               >
                 <span className="text-4xl font-black text-primary tracking-tighter italic">
                   {stat.value}
@@ -46,29 +417,67 @@ const FinancialSection = () => {
               </div>
             ))}
           </div>
-          
+
           <div className="pt-6">
             <button className="group flex items-center gap-4 text-primary text-xs font-black uppercase tracking-widest border-b-2 border-primary pb-2 hover:text-foreground hover:border-foreground transition-all">
-              Ver planos 
+              Ver planos
               <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
             </button>
           </div>
         </motion.div>
-        
-        <motion.div 
-          className="w-full md:w-1/2 flex justify-center"
+
+        {/* Right — carousel */}
+        <motion.div
+          className="w-full md:w-[60%] flex flex-col gap-3"
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <div className="wireframe-container w-full aspect-video md:aspect-[4/3] bg-background p-2 overflow-hidden">
-            <img 
-              src={financialDashboard}
-              alt="Dashboard financeiro"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 border border-primary/20 pointer-events-none"></div>
+          {/* Tab indicators */}
+          <div className="flex items-center gap-2 justify-center">
+            {slides.map((slide, index) => (
+              <button
+                key={slide.label}
+                onClick={() => scrollTo(index)}
+                className={`px-3 py-2 text-[9px] font-black uppercase tracking-widest border rounded-sm transition-all cursor-pointer ${current === index
+                    ? "border-primary bg-primary/10 text-primary"
+                    : "border-border text-text-secondary hover:border-primary/40 hover:text-foreground"
+                  }`}
+              >
+                {slide.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Carousel */}
+          <Carousel setApi={setApi} opts={{ loop: true }} className="w-full">
+            <CarouselContent>
+              {slides.map((slide, i) => {
+                const SlideComponent = slide.component;
+                return (
+                  <CarouselItem key={i}>
+                    <div className="aspect-[4/3]">
+                      <SlideComponent />
+                    </div>
+                  </CarouselItem>
+                );
+              })}
+            </CarouselContent>
+          </Carousel>
+
+          {/* Dots */}
+          <div className="flex items-center justify-center gap-2 pt-1">
+            {slides.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => scrollTo(index)}
+                className={`h-1 rounded-full transition-all duration-300 cursor-pointer ${current === index
+                    ? "w-8 bg-primary"
+                    : "w-3 bg-border hover:bg-text-secondary"
+                  }`}
+              />
+            ))}
           </div>
         </motion.div>
       </div>
