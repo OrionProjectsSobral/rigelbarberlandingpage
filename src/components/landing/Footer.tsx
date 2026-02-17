@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Footer = () => {
   return (
     <footer className="w-full border-t border-border bg-background py-16 px-6">
@@ -15,19 +17,19 @@ const Footer = () => {
             A plataforma completa para gestão e crescimento de barbearias.
           </p>
         </div>
-        
+
         <div className="flex gap-12 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary">
           <a className="hover:text-primary transition-colors border-b border-transparent hover:border-primary pb-1" href="#">
             Termos
           </a>
-          <a className="hover:text-primary transition-colors border-b border-transparent hover:border-primary pb-1" href="#">
+          <Link className="hover:text-primary transition-colors border-b border-transparent hover:border-primary pb-1" to="/privacidade">
             Privacidade
-          </a>
+          </Link>
           <a className="hover:text-primary transition-colors border-b border-transparent hover:border-primary pb-1" href="#">
             Suporte
           </a>
         </div>
-        
+
         <div className="text-text-secondary text-[10px] font-black uppercase tracking-widest">
           © 2024 RigelBarber. Todos os direitos reservados.
         </div>
