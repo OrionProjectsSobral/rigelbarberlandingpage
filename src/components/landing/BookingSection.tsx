@@ -37,10 +37,10 @@ const Stepper = ({ activeStep }: { activeStep: number }) => (
         <div className="flex flex-col items-center gap-1.5">
           <div
             className={`w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-black transition-all ${i < activeStep
+              ? "bg-primary text-primary-foreground"
+              : i === activeStep
                 ? "bg-primary text-primary-foreground"
-                : i === activeStep
-                  ? "bg-primary text-primary-foreground"
-                  : "border border-border text-text-secondary"
+                : "border border-border text-text-secondary"
               }`}
           >
             {i < activeStep ? <Check size={12} /> : i + 1}
@@ -224,10 +224,10 @@ const SlideDateTime = () => (
               <div
                 key={day}
                 className={`aspect-square flex items-center justify-center text-[8px] font-bold rounded-full transition-all ${day === 19
-                    ? "bg-primary text-primary-foreground"
-                    : day < 17
-                      ? "text-text-secondary/40"
-                      : "text-foreground"
+                  ? "bg-primary text-primary-foreground"
+                  : day < 17
+                    ? "text-text-secondary/40"
+                    : "text-foreground"
                   }`}
               >
                 {day}
@@ -252,8 +252,8 @@ const SlideDateTime = () => (
               <div
                 key={time}
                 className={`py-1.5 text-center text-[8px] font-bold border rounded-sm transition-all ${time === "11:00"
-                    ? "border-primary bg-primary/10 text-primary"
-                    : "border-border text-foreground"
+                  ? "border-primary bg-primary/10 text-primary"
+                  : "border-border text-foreground"
                   }`}
               >
                 {time}
@@ -278,7 +278,7 @@ const SlideConfirmation = () => (
     <AppHeader />
     <Stepper activeStep={3} />
 
-    <div className="flex-1 px-4 pb-4 flex flex-col gap-4 overflow-hidden">
+    <div className="flex-1 px-4 pb-4 flex flex-col gap-4 overflow-y-auto scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent">
       {/* Back */}
       <div className="flex items-center gap-2 text-text-secondary text-[10px] font-bold">
         <ChevronLeft size={12} /> Voltar
@@ -409,14 +409,14 @@ const BookingSection = () => {
                 key={slide.step}
                 onClick={() => scrollTo(index)}
                 className={`flex items-center gap-2 px-3 py-2 text-[9px] font-black uppercase tracking-widest border rounded-sm transition-all cursor-pointer ${current === index
-                    ? "border-primary bg-primary/10 text-primary"
-                    : "border-border text-text-secondary hover:border-primary/40 hover:text-foreground"
+                  ? "border-primary bg-primary/10 text-primary"
+                  : "border-border text-text-secondary hover:border-primary/40 hover:text-foreground"
                   }`}
               >
                 <span
                   className={`w-4 h-4 flex items-center justify-center text-[8px] font-black rounded-sm ${current === index
-                      ? "bg-primary text-primary-foreground"
-                      : "bg-surface text-text-secondary"
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-surface text-text-secondary"
                     }`}
                 >
                   {slide.step}
@@ -449,8 +449,8 @@ const BookingSection = () => {
                 key={index}
                 onClick={() => scrollTo(index)}
                 className={`h-1 rounded-full transition-all duration-300 cursor-pointer ${current === index
-                    ? "w-8 bg-primary"
-                    : "w-3 bg-border hover:bg-text-secondary"
+                  ? "w-8 bg-primary"
+                  : "w-3 bg-border hover:bg-text-secondary"
                   }`}
               />
             ))}

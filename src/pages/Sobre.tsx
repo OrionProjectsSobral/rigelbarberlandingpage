@@ -15,7 +15,7 @@ import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 
 const founders = [
-    { name: "Pablo Henrique" },
+    { name: "Pablo Henrique de Sousa" },
     { name: "Júlio César Saldanha Landim" },
     { name: "Gabriel Meireles Soares" },
     { name: "Christian Ximenes Paiva" },

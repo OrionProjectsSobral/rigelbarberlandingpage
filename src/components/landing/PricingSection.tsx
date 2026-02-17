@@ -1,64 +1,82 @@
 import { motion } from "framer-motion";
-import { Check, Star } from "lucide-react";
+import { Check, Minus, User, Crown, ShoppingCart } from "lucide-react";
+
+/* ============ PLAN DATA ============ */
 
 const plans = [
   {
-    name: "Starter",
-    description: "Para barbearias iniciando sua jornada digital",
-    price: "79",
-    period: "/mês",
-    features: [
-      "Até 2 profissionais",
-      "Agendamento online ilimitado",
-      "Lembretes via WhatsApp",
-      "Relatórios básicos",
-      "Suporte por email",
-    ],
-    cta: "Começar Agora",
+    name: "Solo",
+    icon: User,
+    description: "Para quem está começando",
+    price: "49,90",
+    cta: "Mudar para Solo",
     popular: false,
+    current: false,
   },
   {
-    name: "Professional",
-    description: "O plano mais escolhido pelos nossos clientes",
-    price: "149",
-    period: "/mês",
-    features: [
-      "Até 5 profissionais",
-      "Tudo do Starter +",
-      "Controle de comissões",
-      "Relatórios avançados",
-      "Personalização da marca",
-      "Integração Google Calendar",
-      "Suporte prioritário",
-    ],
-    cta: "Falar com Especialista",
+    name: "Pro",
+    icon: Crown,
+    description: "Gestão Completa",
+    price: "79,90",
+    cta: "Mudar para Pro",
     popular: true,
+    current: false,
   },
   {
-    name: "Enterprise",
-    description: "Para redes e múltiplas unidades",
-    price: "299",
-    period: "/mês",
-    features: [
-      "Profissionais ilimitados",
-      "Tudo do Professional +",
-      "Múltiplas unidades",
-      "API personalizada",
-      "Gerente de sucesso dedicado",
-      "Treinamento da equipe",
-      "SLA garantido",
-    ],
-    cta: "Falar com Especialista",
+    name: "Elite",
+    icon: ShoppingCart,
+    description: "Máquina de Vendas",
+    price: "99,90",
+    cta: "Plano Atual",
     popular: false,
+    current: true,
   },
 ];
 
+type FeatureValue = boolean | string;
+
+interface FeatureRow {
+  label: string;
+  values: FeatureValue[];
+}
+
+const features: FeatureRow[] = [
+  { label: "Profissionais", values: ["Até 2", "Até 5", "Ilimitado"] },
+  { label: "Agendamento Online", values: [true, true, true] },
+  { label: "Lembretes Manuais (Zap)", values: [true, true, true] },
+  { label: "Gestão Financeira", values: [true, true, true] },
+  { label: "Controle de Estoque", values: [false, "Até 6 Produtos", "Ilimitado"] },
+  { label: "Suporte 24/7", values: [true, true, true] },
+  { label: "Notificações Automáticas (WhatsApp)", values: [false, true, true] },
+  { label: "Clube de Assinaturas", values: [false, "Até 3 Planos", "Ilimitado"] },
+  { label: "Programa de Fidelidade", values: [false, false, true] },
+];
+
+/* ============ CELL RENDERER ============ */
+
+const CellValue = ({ value }: { value: FeatureValue }) => {
+  if (value === true) {
+    return <Check size={16} className="text-primary mx-auto" />;
+  }
+  if (value === false) {
+    return <Minus size={16} className="text-text-secondary/40 mx-auto" />;
+  }
+  return (
+    <span className="text-foreground text-sm font-medium">{value}</span>
+  );
+};
+
+/* ============ COMPONENT ============ */
+
 const PricingSection = () => {
   return (
-    <section className="w-full py-24 md:py-32 px-6 bg-background flex justify-center border-b border-border" id="precos">
+    <section
+      className="w-full py-24 md:py-32 px-6 bg-background flex justify-center border-b border-border"
+      id="precos"
+    >
       <div className="max-w-[1200px] w-full flex flex-col gap-16">
         {/* Header */}
-        <motion.div 
+        <motion.div
           className="text-center flex flex-col gap-6 items-center"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -74,88 +92,185 @@ const PricingSection = () => {
             Escolha o Plano Ideal
           </h2>
           <p className="text-text-secondary text-lg font-medium max-w-2xl">
-            Comece gratuitamente e escale conforme seu negócio cresce. Sem taxas ocultas, cancele quando quiser.
+            Comece agora e escale conforme seu negócio cresce. Sem taxas ocultas,
+            cancele quando quiser.
           </p>
         </motion.div>
 
-        {/* Plans grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-l border-t border-border">
-          {plans.map((plan, index) => (
-            <motion.div
-              key={plan.name}
-              className={`relative flex flex-col p-8 md:p-10 border-r border-b border-border ${
-                plan.popular ? 'bg-surface' : 'bg-background'
-              }`}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-            >
-              {/* Popular badge */}
-              {plan.popular && (
-                <div className="absolute -top-px left-0 right-0 h-1 bg-primary"></div>
-              )}
-              {plan.popular && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  <div className="flex items-center gap-1 bg-primary text-primary-foreground text-[8px] font-black px-3 py-1 uppercase tracking-widest">
-                    <Star size={10} fill="currentColor" />
-                    Mais Popular
-                  </div>
-                </div>
-              )}
+        {/* COMPARISON TABLE — Desktop */}
+        <motion.div
+          className="hidden md:block overflow-x-auto"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
+          <table className="w-full border-collapse">
+            {/* PLAN HEADERS */}
+            <thead>
+              <tr>
+                {/* Empty cell for feature labels column */}
+                <th className="w-[280px]"></th>
+                {plans.map((plan) => {
+                  const Icon = plan.icon;
+                  return (
+                    <th
+                      key={plan.name}
+                      className="px-6 pt-8 pb-6 text-left align-top border-l border-border"
+                    >
+                      <div className="flex flex-col gap-4">
+                        {/* Badges */}
+                        <div className="flex items-center gap-2 min-h-[24px]">
+                          {plan.popular && (
+                            <span className="px-3 py-1 bg-primary text-primary-foreground text-[9px] font-black uppercase tracking-widest rounded-sm">
+                              Popular
+                            </span>
+                          )}
+                          {plan.current && (
+                            <span className="px-3 py-1 border border-primary text-primary text-[9px] font-black uppercase tracking-widest rounded-sm">
+                              Atual
+                            </span>
+                          )}
+                        </div>
 
-              {/* Plan header */}
-              <div className="flex flex-col gap-4 mb-8">
-                <h3 className="text-foreground text-2xl font-black uppercase tracking-tight">
-                  {plan.name}
-                </h3>
-                <p className="text-text-secondary text-sm font-medium min-h-[40px]">
-                  {plan.description}
-                </p>
-              </div>
+                        {/* Name + Icon */}
+                        <div className="flex items-center gap-2">
+                          <Icon size={18} className="text-primary" />
+                          <span className="text-foreground text-xl font-black tracking-tight">
+                            {plan.name}
+                          </span>
+                        </div>
 
-              {/* Price */}
-              <div className="flex items-baseline gap-1 mb-8">
-                <span className="text-text-secondary text-lg font-bold">R$</span>
-                <span className="text-foreground text-5xl md:text-6xl font-black tracking-tighter italic">
-                  {plan.price}
-                </span>
-                <span className="text-text-secondary text-sm font-bold uppercase tracking-widest">
-                  {plan.period}
-                </span>
-              </div>
+                        {/* Description */}
+                        <p className="text-text-secondary text-xs font-medium italic">
+                          {plan.description}
+                        </p>
 
-              {/* Features */}
-              <ul className="flex flex-col gap-4 mb-10 flex-1">
-                {plan.features.map((feature) => (
-                  <li key={feature} className="flex items-center gap-3">
-                    <span className="w-4 h-4 flex items-center justify-center border border-primary text-primary flex-shrink-0">
-                      <Check size={10} />
-                    </span>
-                    <span className="text-text-secondary text-sm font-medium">
-                      {feature}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+                        {/* Price */}
+                        <div className="flex items-baseline gap-1">
+                          <span className="text-foreground text-3xl font-black tracking-tighter">
+                            R$ {plan.price}
+                          </span>
+                          <span className="text-text-secondary text-xs font-medium">
+                            /mês
+                          </span>
+                        </div>
 
-              {/* CTA */}
-              <motion.button
-                className={`w-full h-14 text-sm font-black uppercase tracking-widest transition-all ${
-                  plan.popular
-                    ? 'bg-primary text-primary-foreground hover:bg-foreground'
-                    : 'border-2 border-foreground text-foreground hover:bg-foreground hover:text-background'
-                }`}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                        {/* CTA */}
+                        <button
+                          className={`w-full py-3 text-xs font-black uppercase tracking-widest rounded-md transition-all ${plan.current
+                              ? "border border-border text-text-secondary cursor-default"
+                              : "bg-primary text-primary-foreground hover:brightness-110"
+                            }`}
+                        >
+                          {plan.cta}
+                        </button>
+                      </div>
+                    </th>
+                  );
+                })}
+              </tr>
+            </thead>
+
+            {/* FEATURE ROWS */}
+            <tbody>
+              {features.map((feature, idx) => (
+                <tr
+                  key={feature.label}
+                  className={`border-t border-border ${idx % 2 === 0 ? "bg-background" : "bg-surface/30"
+                    }`}
+                >
+                  <td className="px-6 py-4 text-foreground text-sm font-bold">
+                    {feature.label}
+                  </td>
+                  {feature.values.map((val, i) => (
+                    <td
+                      key={i}
+                      className="px-6 py-4 text-center border-l border-border"
+                    >
+                      <CellValue value={val} />
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </motion.div>
+
+        {/* MOBILE CARDS */}
+        <div className="md:hidden flex flex-col gap-8">
+          {plans.map((plan, planIdx) => {
+            const Icon = plan.icon;
+            return (
+              <motion.div
+                key={plan.name}
+                className={`border border-border rounded-md overflow-hidden ${plan.popular ? "border-primary" : ""
+                  }`}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: planIdx * 0.1 }}
               >
-                {plan.cta}
-              </motion.button>
-            </motion.div>
-          ))}
-        </div>
+                {/* Card header */}
+                <div className="p-6 flex flex-col gap-3 bg-surface/50">
+                  <div className="flex items-center gap-2">
+                    {plan.popular && (
+                      <span className="px-3 py-1 bg-primary text-primary-foreground text-[9px] font-black uppercase tracking-widest rounded-sm">
+                        Popular
+                      </span>
+                    )}
+                    {plan.current && (
+                      <span className="px-3 py-1 border border-primary text-primary text-[9px] font-black uppercase tracking-widest rounded-sm">
+                        Atual
+                      </span>
+                    )}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Icon size={18} className="text-primary" />
+                    <span className="text-foreground text-xl font-black tracking-tight">
+                      {plan.name}
+                    </span>
+                  </div>
+                  <p className="text-text-secondary text-xs font-medium italic">
+                    {plan.description}
+                  </p>
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-foreground text-3xl font-black tracking-tighter">
+                      R$ {plan.price}
+                    </span>
+                    <span className="text-text-secondary text-xs font-medium">
+                      /mês
+                    </span>
+                  </div>
+                  <button
+                    className={`w-full py-3 text-xs font-black uppercase tracking-widest rounded-md transition-all mt-2 ${plan.current
+                        ? "border border-border text-text-secondary cursor-default"
+                        : "bg-primary text-primary-foreground hover:brightness-110"
+                      }`}
+                  >
+                    {plan.cta}
+                  </button>
+                </div>
 
-        
+                {/* Feature list */}
+                <div className="flex flex-col">
+                  {features.map((feature, idx) => (
+                    <div
+                      key={feature.label}
+                      className={`flex items-center justify-between px-6 py-3 border-t border-border ${idx % 2 === 0 ? "" : "bg-surface/30"
+                        }`}
+                    >
+                      <span className="text-foreground text-xs font-bold">
+                        {feature.label}
+                      </span>
+                      <CellValue value={feature.values[planIdx]} />
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
