@@ -9,27 +9,24 @@ const plans = [
     icon: User,
     description: "Para quem está começando",
     price: "49,90",
-    cta: "Mudar para Solo",
+    cta: "Começar Agora",
     popular: false,
-    current: false,
   },
   {
     name: "Pro",
     icon: Crown,
     description: "Gestão Completa",
     price: "79,90",
-    cta: "Mudar para Pro",
+    cta: "Começar Agora",
     popular: true,
-    current: false,
   },
   {
     name: "Elite",
     icon: ShoppingCart,
     description: "Máquina de Vendas",
     price: "99,90",
-    cta: "Plano Atual",
+    cta: "Começar Agora",
     popular: false,
-    current: true,
   },
 ];
 
@@ -126,11 +123,6 @@ const PricingSection = () => {
                               Popular
                             </span>
                           )}
-                          {plan.current && (
-                            <span className="px-3 py-1 border border-primary text-primary text-[9px] font-black uppercase tracking-widest rounded-sm">
-                              Atual
-                            </span>
-                          )}
                         </div>
 
                         {/* Name + Icon */}
@@ -155,16 +147,6 @@ const PricingSection = () => {
                             /mês
                           </span>
                         </div>
-
-                        {/* CTA */}
-                        <button
-                          className={`w-full py-3 text-xs font-black uppercase tracking-widest rounded-md transition-all ${plan.current
-                              ? "border border-border text-text-secondary cursor-default"
-                              : "bg-primary text-primary-foreground hover:brightness-110"
-                            }`}
-                        >
-                          {plan.cta}
-                        </button>
                       </div>
                     </th>
                   );
@@ -194,6 +176,22 @@ const PricingSection = () => {
                 </tr>
               ))}
             </tbody>
+
+            {/* CTA BUTTONS ROW */}
+            <tfoot>
+              <tr className="border-t border-border">
+                <td className="px-6 py-6"></td>
+                {plans.map((plan) => (
+                  <td key={plan.name} className="px-6 py-6 border-l border-border">
+                    <button
+                      className="w-full py-3 text-xs font-black uppercase tracking-widest rounded-md transition-all bg-primary text-primary-foreground hover:brightness-110"
+                    >
+                      {plan.cta}
+                    </button>
+                  </td>
+                ))}
+              </tr>
+            </tfoot>
           </table>
         </motion.div>
 
@@ -219,11 +217,6 @@ const PricingSection = () => {
                         Popular
                       </span>
                     )}
-                    {plan.current && (
-                      <span className="px-3 py-1 border border-primary text-primary text-[9px] font-black uppercase tracking-widest rounded-sm">
-                        Atual
-                      </span>
-                    )}
                   </div>
                   <div className="flex items-center gap-2">
                     <Icon size={18} className="text-primary" />
@@ -242,14 +235,6 @@ const PricingSection = () => {
                       /mês
                     </span>
                   </div>
-                  <button
-                    className={`w-full py-3 text-xs font-black uppercase tracking-widest rounded-md transition-all mt-2 ${plan.current
-                        ? "border border-border text-text-secondary cursor-default"
-                        : "bg-primary text-primary-foreground hover:brightness-110"
-                      }`}
-                  >
-                    {plan.cta}
-                  </button>
                 </div>
 
                 {/* Feature list */}
@@ -267,6 +252,17 @@ const PricingSection = () => {
                     </div>
                   ))}
                 </div>
+
+                {/* CTA at bottom */}
+                <div className="p-6 border-t border-border">
+                  <button
+                    className="w-full py-3 text-xs font-black uppercase tracking-widest rounded-md transition-all bg-primary text-primary-foreground hover:brightness-110"
+                  >
+                    {plan.cta}
+                  </button>
+                </div>
+
+
               </motion.div>
             );
           })}
