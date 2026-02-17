@@ -23,7 +23,7 @@ import {
 const benefits = [
   "Link exclusivo para sua barbearia",
   "Sem necessidade de baixar app",
-  "Integração com Google Calendar",
+  "Interface amigável e intuitiva"
 ];
 
 /* ============ SHARED STEPPER ============ */
