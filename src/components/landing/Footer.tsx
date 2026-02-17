@@ -19,9 +19,9 @@ const Footer = () => {
         </div>
 
         <div className="flex gap-12 text-[10px] font-black uppercase tracking-[0.2em] text-text-secondary">
-          <a className="hover:text-primary transition-colors border-b border-transparent hover:border-primary pb-1" href="#">
+          <Link className="hover:text-primary transition-colors border-b border-transparent hover:border-primary pb-1" to="/termos">
             Termos
-          </a>
+          </Link>
           <Link className="hover:text-primary transition-colors border-b border-transparent hover:border-primary pb-1" to="/privacidade">
             Privacidade
           </Link>

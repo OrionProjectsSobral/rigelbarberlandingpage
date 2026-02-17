@@ -56,7 +56,7 @@ const Sobre = () => {
                             </h1>
 
                             <p className="text-text-secondary text-lg md:text-xl font-medium leading-relaxed max-w-[700px] border-l-2 border-r-2 border-border px-8">
-                                A Orion é uma empresa de tecnologia criada para facilitar a
+                                A <span className="text-primary">Orion</span> é uma empresa de tecnologia criada para facilitar a
                                 gestão de comerciantes de todos os níveis — desde quem está
                                 começando e enfrenta desafios diários até empresários já
                                 consolidados no mercado.
@@ -100,7 +100,7 @@ const Sobre = () => {
 
                             <div className="flex flex-col gap-6">
                                 <p className="text-text-secondary text-base md:text-lg leading-relaxed font-medium border-l-2 border-primary/40 pl-6">
-                                    A Orion nasceu da iniciativa de quatro estudantes de
+                                    A <span className="text-primary">Orion</span> nasceu da iniciativa de quatro estudantes de
                                     Engenharia de Computação da Universidade Federal do Ceará
                                     (UFC), campus Sobral.
                                 </p>
@@ -275,7 +275,7 @@ const Sobre = () => {
                         </h2>
 
                         <p className="text-text-secondary text-lg md:text-xl font-medium leading-relaxed max-w-[700px] border-x border-border px-10">
-                            O Rigel Barber é uma das soluções desenvolvidas pela Orion, criada
+                            O Rigel Barber é uma das soluções desenvolvidas pela <span className="text-primary">Orion</span>, criada
                             especificamente para modernizar e otimizar a gestão de barbearias.
                         </p>
 

@@ -20,6 +20,9 @@ const Header = () => {
 
         <div className="hidden md:flex flex-1 justify-end gap-10 items-center">
           <nav className="flex items-center gap-10">
+            <a className="text-foreground text-xs font-bold uppercase tracking-widest hover:text-primary transition-colors" href="/">
+              Início
+            </a>
             <a className="text-foreground text-xs font-bold uppercase tracking-widest hover:text-primary transition-colors" href="/#funcionalidades">
               Funcionalidades
             </a>
@@ -50,6 +53,9 @@ const Header = () => {
       {mobileMenuOpen && (
         <div className="md:hidden border-t border-border bg-background px-6 py-6 flex flex-col gap-6">
           <nav className="flex flex-col gap-4">
+            <a className="text-foreground text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors" href="/">
+              Início
+            </a>
             <a className="text-foreground text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors" href="/#funcionalidades">
               Funcionalidades
             </a>
