@@ -68,7 +68,7 @@ const CellValue = ({ value }: { value: FeatureValue }) => {
 const PricingSection = () => {
   return (
     <section
-      className="w-full py-24 md:py-32 px-6 bg-background flex justify-center border-b border-border"
+      className="w-full py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-background flex justify-center border-b border-border"
       id="precos"
     >
       <div className="max-w-[1200px] w-full flex flex-col gap-16">
@@ -85,10 +85,10 @@ const PricingSection = () => {
             Planos e Preços
             <span className="w-12 h-[1px] bg-primary"></span>
           </div>
-          <h2 className="text-foreground text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none max-w-4xl">
+          <h2 className="text-foreground text-3xl sm:text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none max-w-4xl">
             Escolha o Plano Ideal
           </h2>
-          <p className="text-text-secondary text-lg font-medium max-w-2xl">
+          <p className="text-text-secondary text-base sm:text-lg font-medium max-w-2xl">
             Comece agora e escale conforme seu negócio cresce. Sem taxas ocultas,
             cancele quando quiser.
           </p>

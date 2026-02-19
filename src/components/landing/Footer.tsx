@@ -10,10 +10,10 @@ const socials = [
 
 const Footer = () => {
   return (
-    <footer className="w-full border-t border-border bg-background py-16 px-6">
+    <footer className="w-full border-t border-border bg-background py-10 sm:py-16 px-4 sm:px-6">
       <div className="max-w-[1400px] mx-auto flex flex-col gap-12">
         {/* Top row */}
-        <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-12">
+        <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 sm:gap-12">
           {/* Brand */}
           <div className="flex flex-col gap-6 text-center md:text-left">
             <div className="flex items-center justify-center md:justify-start gap-3 text-foreground">

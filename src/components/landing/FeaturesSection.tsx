@@ -36,30 +36,30 @@ const features = [
 
 const FeaturesSection = () => {
   return (
-    <section className="w-full py-24 px-6 bg-background flex justify-center border-b border-border" id="funcionalidades">
+    <section className="w-full py-16 sm:py-24 px-4 sm:px-6 bg-background flex justify-center border-b border-border" id="funcionalidades">
       <div className="max-w-[1200px] w-full flex flex-col gap-16">
-        <motion.div 
-          className="max-w-[720px] flex flex-col gap-4 border-l-4 border-primary pl-8"
+        <motion.div
+          className="max-w-[720px] flex flex-col gap-4 border-l-4 border-primary pl-4 sm:pl-8"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-foreground text-4xl md:text-5xl font-black uppercase tracking-tighter leading-none">
+          <h2 className="text-foreground text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tighter leading-none">
             Ferramentas Poderosas
           </h2>
-          <p className="text-text-secondary text-lg font-medium">
+          <p className="text-text-secondary text-base sm:text-lg font-medium">
             Tudo o que você precisa para gerenciar seu negócio em um só lugar, projetado para impulsionar seu crescimento.
           </p>
         </motion.div>
-        
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-border">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
               <motion.div
                 key={feature.title}
-                className="group flex flex-col gap-6 p-8 border-r border-b border-border hover:bg-surface transition-all duration-300"
+                className="group flex flex-col gap-4 sm:gap-6 p-5 sm:p-8 border-r border-b border-border hover:bg-surface transition-all duration-300"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}

@@ -86,7 +86,7 @@ const FAQItem = ({
 const FAQSection = () => {
     return (
         <section
-            className="w-full py-24 md:py-32 px-6 bg-background flex justify-center border-b border-border"
+            className="w-full py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-background flex justify-center border-b border-border"
             id="faq"
         >
             <div className="max-w-[800px] w-full flex flex-col gap-14">
@@ -103,11 +103,11 @@ const FAQSection = () => {
                         Ainda tem dúvidas?
                         <span className="w-12 h-[1px] bg-primary"></span>
                     </div>
-                    <h2 className="text-foreground text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none">
+                    <h2 className="text-foreground text-3xl sm:text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none">
                         Perguntas{" "}
                         <span className="text-primary">Frequentes</span>
                     </h2>
-                    <p className="text-text-secondary text-lg font-medium max-w-xl">
+                    <p className="text-text-secondary text-base sm:text-lg font-medium max-w-xl">
                         Tire suas dúvidas sobre a plataforma e descubra como podemos
                         ajudar o seu negócio a crescer.
                     </p>

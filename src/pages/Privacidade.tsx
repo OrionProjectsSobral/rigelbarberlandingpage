@@ -9,7 +9,7 @@ const Privacidade = () => {
             <Header />
             <main className="flex-1">
                 {/* HERO */}
-                <section className="relative w-full py-24 md:py-36 px-6 flex justify-center data-grid overflow-hidden">
+                <section className="relative w-full py-16 sm:py-24 md:py-36 px-4 sm:px-6 flex justify-center data-grid overflow-hidden">
                     <div className="max-w-[900px] w-full flex flex-col gap-10 items-center text-center">
                         <motion.div
                             className="flex flex-col gap-8 items-center"
@@ -17,18 +17,18 @@ const Privacidade = () => {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6 }}
                         >
-                            <div className="text-primary font-black uppercase tracking-[0.2em] text-[10px] flex items-center gap-4">
-                                <span className="w-12 h-[1px] bg-primary"></span>
+                            <div className="text-primary font-black uppercase tracking-[0.2em] text-[10px] flex items-center gap-2 sm:gap-4">
+                                <span className="w-8 sm:w-12 h-[1px] bg-primary"></span>
                                 Conformidade Legal
-                                <span className="w-12 h-[1px] bg-primary"></span>
+                                <span className="w-8 sm:w-12 h-[1px] bg-primary"></span>
                             </div>
 
-                            <h1 className="text-foreground text-5xl md:text-7xl font-black leading-[0.9] tracking-tighter uppercase italic">
+                            <h1 className="text-foreground text-4xl sm:text-5xl md:text-7xl font-black leading-[0.9] tracking-tighter uppercase italic">
                                 Política de{" "}
                                 <span className="text-primary not-italic">Privacidade</span>
                             </h1>
 
-                            <p className="text-text-secondary text-lg md:text-xl font-medium leading-relaxed max-w-[700px] border-l-2 border-r-2 border-border px-8">
+                            <p className="text-text-secondary text-base sm:text-lg md:text-xl font-medium leading-relaxed max-w-[700px] border-l-2 border-r-2 border-border px-4 sm:px-8">
                                 A sua privacidade é importante para nós. Saiba como coletamos,
                                 usamos e protegemos suas informações.
                             </p>
@@ -37,7 +37,7 @@ const Privacidade = () => {
                 </section>
 
                 {/* CONTEÚDO */}
-                <section className="w-full py-24 md:py-32 px-6 bg-surface flex justify-center border-y border-border">
+                <section className="w-full py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-surface flex justify-center border-y border-border">
                     <motion.div
                         className="max-w-[800px] w-full flex flex-col gap-12"
                         initial={{ opacity: 0, y: 30 }}
@@ -51,7 +51,7 @@ const Privacidade = () => {
                                 <div className="w-10 h-10 flex items-center justify-center border border-primary/50 rounded-md text-primary">
                                     <Shield size={20} />
                                 </div>
-                                <h2 className="text-foreground text-2xl md:text-3xl font-black uppercase tracking-tight">
+                                <h2 className="text-foreground text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-tight">
                                     Política de Privacidade
                                 </h2>
                             </div>

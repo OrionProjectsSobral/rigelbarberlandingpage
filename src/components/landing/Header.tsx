@@ -7,7 +7,7 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/90 backdrop-blur-sm">
-      <div className="px-6 md:px-10 py-4 flex items-center justify-between max-w-[1400px] mx-auto w-full">
+      <div className="px-4 sm:px-6 md:px-10 py-4 flex items-center justify-between max-w-[1400px] mx-auto w-full">
         <Link to="/" className="flex items-center gap-3">
           <div className="text-primary">
             <svg fill="none" height="28" viewBox="0 0 48 48" width="28" xmlns="http://www.w3.org/2000/svg">

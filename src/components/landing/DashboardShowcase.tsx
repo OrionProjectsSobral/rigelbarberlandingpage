@@ -175,7 +175,7 @@ const DesktopAgenda = () => (
       </div>
 
       {/* Page content */}
-      <div className="flex-1 px-4 py-3 overflow-y-auto scrollbar-thin">
+      <div className="flex-1 px-4 py-3 overflow-hidden">
         <h3 className="text-foreground text-[11px] font-black mb-0.5">Agenda</h3>
         <p className="text-text-secondary text-[7px] font-medium mb-3">
           Visualize e gerencie os agendamentos da barbearia
@@ -271,7 +271,7 @@ const MobileAgenda = () => (
     </div>
 
     {/* Content */}
-    <div className="flex-1 px-3 py-3 overflow-y-auto scrollbar-thin">
+    <div className="flex-1 px-3 py-3 overflow-hidden">
       <h3 className="text-foreground text-[10px] font-black mb-0.5">Agenda</h3>
       <p className="text-text-secondary text-[6px] font-medium mb-3">
         Visualize e gerencie os agendamentos da barbearia
@@ -358,8 +358,8 @@ const MobileAgenda = () => (
 
 const DashboardShowcase = () => {
   return (
-    <section className="w-full py-24 md:py-32 px-6 bg-surface flex justify-center border-b border-border overflow-hidden" id="sistema">
-      <div className="max-w-[1200px] w-full flex flex-col gap-16">
+    <section className="w-full py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-surface flex justify-center border-b border-border overflow-hidden" id="sistema">
+      <div className="max-w-[1200px] w-full flex flex-col gap-10 sm:gap-16">
         {/* Header */}
         <motion.div
           className="text-center flex flex-col gap-6 items-center"
@@ -373,10 +373,10 @@ const DashboardShowcase = () => {
             Sistema Completo
             <span className="w-12 h-[1px] bg-primary"></span>
           </div>
-          <h2 className="text-foreground text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none max-w-4xl">
+          <h2 className="text-foreground text-3xl sm:text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none max-w-4xl">
             Controle Total na Palma da Mão
           </h2>
-          <p className="text-text-secondary text-lg font-medium max-w-2xl">
+          <p className="text-text-secondary text-base sm:text-lg font-medium max-w-2xl">
             Uma experiência perfeita em qualquer dispositivo. Gerencie sua barbearia do computador ou do celular com a mesma eficiência.
           </p>
         </motion.div>
@@ -394,7 +394,7 @@ const DashboardShowcase = () => {
             return (
               <div
                 key={item.label}
-                className={`flex flex-col items-center gap-3 p-6 md:p-8 text-center ${index < 3 ? 'border-r border-border' : ''} ${index < 2 ? 'md:border-r' : ''}`}
+                className={`flex flex-col items-center gap-2 sm:gap-3 p-4 sm:p-6 md:p-8 text-center ${index < 3 ? 'border-r border-border' : ''} ${index < 2 ? 'md:border-r' : ''}`}
               >
                 <Icon className="text-primary w-6 h-6" />
                 <span className="text-foreground text-[10px] md:text-xs font-bold uppercase tracking-wider">
@@ -443,7 +443,7 @@ const DashboardShowcase = () => {
 
             {/* Mobile mockup - overlapping */}
             <motion.div
-              className="absolute -right-4 md:right-8 -bottom-8 md:-bottom-12 w-24 sm:w-32 md:w-44 lg:w-52"
+              className="absolute -right-2 sm:-right-4 md:right-8 -bottom-6 sm:-bottom-8 md:-bottom-12 w-20 sm:w-32 md:w-44 lg:w-52"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

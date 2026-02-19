@@ -35,7 +35,7 @@ const Sobre = () => {
             <Header />
             <main className="flex-1">
                 {/* ===================== SEÇÃO 1 — HERO INSTITUCIONAL ===================== */}
-                <section className="relative w-full py-24 md:py-36 px-6 flex justify-center data-grid overflow-hidden">
+                <section className="relative w-full py-16 sm:py-24 md:py-36 px-4 sm:px-6 flex justify-center data-grid overflow-hidden">
                     <div className="max-w-[900px] w-full flex flex-col gap-10 items-center text-center">
                         <motion.div
                             className="flex flex-col gap-8 items-center"
@@ -43,19 +43,19 @@ const Sobre = () => {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6 }}
                         >
-                            <div className="text-primary font-black uppercase tracking-[0.2em] text-[10px] flex items-center gap-4">
-                                <span className="w-12 h-[1px] bg-primary"></span>
+                            <div className="text-primary font-black uppercase tracking-[0.2em] text-[10px] flex items-center gap-2 sm:gap-4">
+                                <span className="w-8 sm:w-12 h-[1px] bg-primary"></span>
                                 Sobre a Orion
-                                <span className="w-12 h-[1px] bg-primary"></span>
+                                <span className="w-8 sm:w-12 h-[1px] bg-primary"></span>
                             </div>
 
-                            <h1 className="text-foreground text-5xl md:text-7xl font-black leading-[0.9] tracking-tighter uppercase italic">
+                            <h1 className="text-foreground text-4xl sm:text-5xl md:text-7xl font-black leading-[0.9] tracking-tighter uppercase italic">
                                 Tecnologia que{" "}
                                 <span className="text-primary not-italic">impulsiona</span>{" "}
                                 negócios reais
                             </h1>
 
-                            <p className="text-text-secondary text-lg md:text-xl font-medium leading-relaxed max-w-[700px] border-l-2 border-r-2 border-border px-8">
+                            <p className="text-text-secondary text-base sm:text-lg md:text-xl font-medium leading-relaxed max-w-[700px] border-l-2 border-r-2 border-border px-4 sm:px-8">
                                 A <span className="text-primary">Orion</span> é uma empresa de tecnologia criada para facilitar a
                                 gestão de comerciantes de todos os níveis — desde quem está
                                 começando e enfrenta desafios diários até empresários já
@@ -64,7 +64,7 @@ const Sobre = () => {
 
                             <motion.a
                                 href="#historia"
-                                className="flex items-center justify-center h-14 px-10 bg-primary text-primary-foreground text-sm font-black uppercase tracking-widest hover:bg-foreground transition-all"
+                                className="flex items-center justify-center h-12 sm:h-14 px-8 sm:px-10 bg-primary text-primary-foreground text-xs sm:text-sm font-black uppercase tracking-widest hover:bg-foreground transition-all"
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
                             >

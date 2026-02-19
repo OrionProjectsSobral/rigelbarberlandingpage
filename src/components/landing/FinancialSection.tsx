@@ -54,8 +54,8 @@ const TabBar = ({ active }: { active: number }) => (
       <div
         key={tab}
         className={`py-2 text-center text-[8px] font-bold uppercase tracking-wider transition-all ${i === active
-            ? "bg-primary text-primary-foreground"
-            : "text-text-secondary"
+          ? "bg-primary text-primary-foreground"
+          : "text-text-secondary"
           }`}
       >
         {tab}
@@ -377,8 +377,8 @@ const FinancialSection = () => {
   );
 
   return (
-    <section className="w-full py-24 px-6 bg-surface flex justify-center data-grid border-y border-border">
-      <div className="max-w-[1200px] w-full flex flex-col md:flex-row gap-16 md:gap-12 items-center">
+    <section className="w-full py-16 sm:py-24 px-4 sm:px-6 bg-surface flex justify-center data-grid border-y border-border">
+      <div className="max-w-[1200px] w-full flex flex-col md:flex-row gap-12 sm:gap-16 md:gap-12 items-center">
         {/* Left — text content */}
         <motion.div
           className="flex flex-col gap-8 w-full md:w-[40%]"
@@ -392,11 +392,11 @@ const FinancialSection = () => {
             Gestão Inteligente
           </div>
 
-          <h2 className="text-foreground text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none">
+          <h2 className="text-foreground text-3xl sm:text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none">
             Controle Financeiro Total
           </h2>
 
-          <p className="text-text-secondary text-lg leading-relaxed font-medium">
+          <p className="text-text-secondary text-base sm:text-lg leading-relaxed font-medium">
             Acompanhe o fluxo de caixa, calcule comissões automaticamente e
             visualize o crescimento do seu negócio em tempo real. Tome decisões
             baseadas em dados, não em achismos.
@@ -406,9 +406,9 @@ const FinancialSection = () => {
             {stats.map((stat, index) => (
               <div
                 key={stat.label}
-                className={`flex flex-col gap-2 p-8 ${index === 0 ? "border-r border-border" : ""}`}
+                className={`flex flex-col gap-2 p-5 sm:p-8 ${index === 0 ? "border-r border-border" : ""}`}
               >
-                <span className="text-4xl font-black text-primary tracking-tighter italic">
+                <span className="text-3xl sm:text-4xl font-black text-primary tracking-tighter italic">
                   {stat.value}
                 </span>
                 <span className="text-[10px] font-black uppercase tracking-widest text-text-secondary">
@@ -435,14 +435,14 @@ const FinancialSection = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           {/* Tab indicators */}
-          <div className="flex items-center gap-2 justify-center">
+          <div className="flex items-center gap-2 justify-center flex-wrap">
             {slides.map((slide, index) => (
               <button
                 key={slide.label}
                 onClick={() => scrollTo(index)}
                 className={`px-3 py-2 text-[9px] font-black uppercase tracking-widest border rounded-sm transition-all cursor-pointer ${current === index
-                    ? "border-primary bg-primary/10 text-primary"
-                    : "border-border text-text-secondary hover:border-primary/40 hover:text-foreground"
+                  ? "border-primary bg-primary/10 text-primary"
+                  : "border-border text-text-secondary hover:border-primary/40 hover:text-foreground"
                   }`}
               >
                 {slide.label}
@@ -451,7 +451,7 @@ const FinancialSection = () => {
           </div>
 
           {/* Carousel */}
-          <Carousel setApi={setApi} opts={{ loop: true }} className="w-full">
+          <Carousel setApi={setApi} opts={{ loop: true, watchDrag: false }} className="w-full">
             <CarouselContent>
               {slides.map((slide, i) => {
                 const SlideComponent = slide.component;
@@ -473,8 +473,8 @@ const FinancialSection = () => {
                 key={index}
                 onClick={() => scrollTo(index)}
                 className={`h-1 rounded-full transition-all duration-300 cursor-pointer ${current === index
-                    ? "w-8 bg-primary"
-                    : "w-3 bg-border hover:bg-text-secondary"
+                  ? "w-8 bg-primary"
+                  : "w-3 bg-border hover:bg-text-secondary"
                   }`}
               />
             ))}

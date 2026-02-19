@@ -393,8 +393,8 @@ const BookingSection = () => {
   );
 
   return (
-    <section className="w-full py-24 px-6 bg-background flex justify-center">
-      <div className="max-w-[1200px] w-full flex flex-col md:flex-row gap-16 md:gap-24 items-center">
+    <section className="w-full py-16 sm:py-24 px-4 sm:px-6 bg-background flex justify-center">
+      <div className="max-w-[1200px] w-full flex flex-col md:flex-row gap-12 sm:gap-16 md:gap-24 items-center">
         <motion.div
           className="w-full md:w-1/2 flex flex-col gap-4"
           initial={{ opacity: 0, x: -50 }}
@@ -469,11 +469,11 @@ const BookingSection = () => {
             Experiência do Cliente
           </div>
 
-          <h2 className="text-foreground text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none">
+          <h2 className="text-foreground text-3xl sm:text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none">
             Agendamento Simplificado
           </h2>
 
-          <p className="text-text-secondary text-lg leading-relaxed font-medium">
+          <p className="text-text-secondary text-base sm:text-lg leading-relaxed font-medium">
             Abandone o papel e caneta. Ofereça uma experiência de agendamento
             online impecável para seus clientes, disponível 24 horas por dia.
             Seus clientes podem escolher o serviço, o profissional e o horário
