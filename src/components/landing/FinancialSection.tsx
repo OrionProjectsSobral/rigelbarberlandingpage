@@ -468,7 +468,7 @@ const FinancialSection = () => {
           <div className="pt-6">
             <a
               href="#precos"
-              className="group flex items-center gap-4 text-primary text-xs font-black uppercase tracking-widest border-b-2 border-primary pb-2 hover:text-foreground hover:border-foreground transition-all"
+              className="group flex w-fit items-center gap-4 text-primary text-xs font-black uppercase tracking-widest border-b-2 border-primary pb-2 hover:text-foreground hover:border-foreground transition-all"
             >
               Ver planos
               <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />

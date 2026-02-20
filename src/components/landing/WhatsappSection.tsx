@@ -204,10 +204,10 @@ const WhatsappSection = () => {
                     </div>
 
                     <div className="pt-2">
-                        <button className="group flex items-center gap-4 text-[#25D366] text-xs font-black uppercase tracking-widest border-b-2 border-[#25D366] pb-2 hover:text-foreground hover:border-foreground transition-all w-fit">
+                        <a href="#precos" className="group flex w-fit items-center gap-4 text-[#25D366] text-xs font-black uppercase tracking-widest border-b-2 border-[#25D366] pb-2 hover:text-foreground hover:border-foreground transition-all">
                             Ver planos com integração
                             <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
-                        </button>
+                        </a>
                     </div>
                 </motion.div>
 
