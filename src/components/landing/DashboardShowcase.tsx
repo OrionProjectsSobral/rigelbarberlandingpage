@@ -317,31 +317,31 @@ const MobileAgenda = () => (
         {/* Time slots */}
         <div className="flex flex-col gap-1.5">
           {mobileSlots.map((slot) => (
-            <div key={slot.time} className="flex items-start gap-2">
-              <span className="text-text-secondary text-[6px] font-bold w-6 shrink-0 pt-1">
+            <div key={slot.time} className="flex items-start gap-1.5">
+              <span className="text-text-secondary text-[5px] font-bold w-5 shrink-0 pt-0.5">
                 {slot.time}
               </span>
               {slot.appointment ? (
-                <div className="flex-1 border-l-2 border-primary bg-primary/10 rounded-sm px-2 py-1.5">
-                  <div className="flex items-center justify-between mb-0.5">
-                    <span className="text-primary text-[7px] font-black truncate max-w-[65%]">
+                <div className="flex-1 border-l-2 border-primary bg-primary/10 rounded-sm p-1 flex flex-col gap-0.5">
+                  <div className="flex items-center justify-between">
+                    <span className="text-primary text-[6px] font-black w-[50%] truncate">
                       {slot.appointment.client}
                     </span>
-                    <span className="text-primary text-[5px] font-bold bg-primary/10 border border-primary/30 rounded-sm px-1 py-0.5">
+                    <span className="text-primary text-[4px] font-bold bg-primary/10 border border-primary/30 rounded-sm px-1 py-0.5 shrink-0">
                       {slot.appointment.status}
                     </span>
                   </div>
-                  <div className="flex items-center gap-1.5 text-text-secondary text-[5px] font-medium">
-                    <span className="flex items-center gap-0.5"><Scissors size={5} /> {slot.appointment.service}</span>
-                    <span className="flex items-center gap-0.5"><Clock size={5} /> {slot.appointment.duration}</span>
+                  <div className="flex items-center justify-between text-text-secondary text-[4px] font-medium">
+                    <span className="flex items-center gap-0.5 truncate"><Scissors size={4} /> {slot.appointment.service}</span>
+                    <span className="flex items-center gap-0.5 shrink-0"><Clock size={4} /> {slot.appointment.duration}</span>
                   </div>
-                  <span className="text-text-secondary text-[5px] font-medium flex items-center gap-0.5 mt-0.5">
-                    <User size={5} /> Com: {slot.appointment.professional}
+                  <span className="text-text-secondary text-[4px] font-medium flex items-center gap-0.5 truncate">
+                    <User size={4} /> {slot.appointment.professional}
                   </span>
                 </div>
               ) : (
-                <div className="flex-1 border border-border/50 rounded-sm px-2 py-1.5">
-                  <span className="text-text-secondary text-[6px] font-medium">
+                <div className="flex-1 border border-border/50 rounded-sm p-1">
+                  <span className="text-text-secondary text-[5px] font-medium">
                     Sem agendamentos
                   </span>
                 </div>
@@ -407,63 +407,74 @@ const DashboardShowcase = () => {
 
         {/* Device showcase */}
         <motion.div
-          className="relative flex justify-center items-center py-8 sm:py-16 md:py-24"
+          className="relative flex justify-center py-8 sm:py-16 md:py-24 px-2"
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          {/* Desktop mockup */}
-          <div className="relative w-full max-w-4xl mb-12 sm:mb-20 md:mb-24 lg:mb-28">
-            <div className="bg-background border border-border p-2 md:p-4 glow-primary rounded-md">
-              {/* Browser bar */}
-              <div className="flex items-center gap-2 pb-2 md:pb-3 border-b border-border mb-2 md:mb-3">
-                <div className="flex gap-1.5">
-                  <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-destructive/60"></div>
-                  <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-primary/60"></div>
-                  <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-primary/40"></div>
-                </div>
-                <div className="flex-1 flex justify-center">
-                  <div className="bg-muted px-3 md:px-4 py-1 text-[8px] md:text-[10px] font-bold uppercase tracking-widest text-text-secondary">
-                    rigelbarber.app/dashboard
+          {/* Mockups Container */}
+          <div className="relative w-full max-w-4xl flex flex-col sm:block items-center mb-0 sm:mb-20 md:mb-24 lg:mb-28">
+            {/* Desktop mockup */}
+            <div className="relative w-full z-10">
+              <div className="relative bg-background border border-border p-2 md:p-4 glow-primary rounded-md">
+                {/* Browser bar */}
+                <div className="flex items-center gap-2 pb-2 md:pb-3 border-b border-border mb-2 md:mb-3">
+                  <div className="flex gap-1.5">
+                    <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-destructive/60"></div>
+                    <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-primary/60"></div>
+                    <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-primary/40"></div>
+                  </div>
+                  <div className="flex-1 flex justify-center">
+                    <div className="bg-muted px-3 md:px-4 py-1 rounded-sm text-[8px] md:text-[10px] font-bold uppercase tracking-widest text-text-secondary">
+                      rigelbarber.app/dashboard
+                    </div>
                   </div>
                 </div>
-              </div>
-              {/* Screen content */}
-              <div className="aspect-[16/9] bg-background overflow-hidden">
-                <DesktopAgenda />
-              </div>
-              {/* Desktop label */}
-              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2">
-                <div className="bg-primary text-primary-foreground text-[8px] md:text-[10px] font-black px-3 py-1 uppercase tracking-tighter">
-                  DESKTOP
+                {/* Screen content */}
+                <div className="relative aspect-[16/9] bg-background border border-border overflow-hidden flex items-center justify-center">
+                  <div className="w-[800px] h-[450px] origin-top-left absolute top-0 left-0" style={{ transform: "scale(var(--mockup-scale, 1))", width: "800px" }}>
+                    <DesktopAgenda />
+                  </div>
+                  {/* Tailwind doesn't have cqw by default, so we apply a small inline script to adjust scale if needed, or simply let CSS handle it. 
+                      Actually, a completely responsive scale can be done with container-type: inline-size */}
+                  <style>{`
+                    .glow-primary { container-type: inline-size; }
+                    .glow-primary > .aspect-\\[16\\/9\\] > div { transform: scale(max(0.3, calc(100cqw / 800))); }
+                  `}</style>
+                </div>
+                {/* Desktop label */}
+                <div className="absolute -bottom-4 md:-bottom-5 left-1/2 -translate-x-1/2 z-20">
+                  <div className="bg-primary text-primary-foreground text-[10px] md:text-xs font-black px-4 py-1.5 md:px-6 md:py-2 rounded-sm uppercase tracking-widest shadow-lg">
+                    DESKTOP
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Mobile mockup - overlapping */}
+            {/* Mobile mockup */}
             <motion.div
-              className="absolute right-0 sm:-right-4 md:-right-8 lg:-right-16 -bottom-10 sm:-bottom-16 md:-bottom-20 w-[115px] sm:w-[160px] md:w-[220px] lg:w-[260px]"
+              className="relative sm:absolute mt-12 sm:mt-0 right-auto sm:-right-4 md:-right-8 lg:-right-16 top-auto sm:-bottom-16 md:-bottom-20 w-[180px] sm:w-[160px] md:w-[220px] lg:w-[260px] z-30 mx-auto sm:mx-0"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.6 }}
             >
-              <div className="relative bg-background border-2 border-border p-1 md:p-2 device-shadow animate-float rounded-lg">
+              <div className="relative bg-background border-2 border-border p-1.5 md:p-2 device-shadow rounded-xl md:rounded-2xl">
                 {/* Phone notch */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-12 md:w-16 h-3 md:h-4 bg-background border-x border-b border-border rounded-b-lg z-10"></div>
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 md:w-20 h-4 md:h-5 bg-background border-x border-b border-border rounded-b-lg z-10"></div>
 
                 {/* Screen content */}
-                <div className="aspect-[9/19] bg-background overflow-hidden rounded-sm">
+                <div className="aspect-[9/19] bg-background overflow-hidden rounded-md md:rounded-lg border border-border relative z-0 mt-3 md:mt-4">
                   <MobileAgenda />
                 </div>
 
                 {/* Home indicator */}
-                <div className="absolute bottom-1 md:bottom-2 left-1/2 -translate-x-1/2 w-8 md:w-12 h-0.5 md:h-1 bg-muted rounded-full"></div>
+                <div className="absolute bottom-1 md:bottom-2 left-1/2 -translate-x-1/2 w-10 md:w-16 h-1 bg-muted rounded-full"></div>
 
                 {/* Mobile label */}
-                <div className="absolute -bottom-3 md:-bottom-4 left-1/2 -translate-x-1/2">
-                  <div className="bg-primary text-primary-foreground text-[6px] md:text-[8px] font-black px-2 py-0.5 uppercase tracking-tighter whitespace-nowrap">
+                <div className="absolute -bottom-4 md:-bottom-5 left-1/2 -translate-x-1/2 z-20">
+                  <div className="bg-primary text-primary-foreground text-[9px] md:text-[10px] font-black px-3 py-1.5 md:px-4 md:py-2 rounded-sm uppercase tracking-widest shadow-lg whitespace-nowrap">
                     MOBILE
                   </div>
                 </div>
