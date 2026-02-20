@@ -21,13 +21,16 @@ const HeroSection = () => {
           </div>
 
           <div className="flex justify-center md:justify-start">
-            <motion.button
+            <motion.a
+              href={import.meta.env.VITE_RIGEL_BARBER_PRODUCT}
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center justify-center h-12 sm:h-14 px-8 sm:px-10 bg-primary text-primary-foreground text-xs sm:text-sm font-black uppercase tracking-widest hover:bg-foreground transition-all"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
               Começar Agora
-            </motion.button>
+            </motion.a>
           </div>
         </motion.div>
 

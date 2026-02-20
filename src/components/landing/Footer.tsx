@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 import { Instagram, Linkedin, Facebook, Twitter } from "lucide-react";
 
 const socials = [
-  { icon: Instagram, label: "Instagram", href: "#" },
-  { icon: Linkedin, label: "LinkedIn", href: "#" },
-  { icon: Facebook, label: "Facebook", href: "#" },
-  { icon: Twitter, label: "Twitter", href: "#" },
+  { icon: Instagram, label: "Instagram", href: import.meta.env.VITE_INSTAGRAM_LINK },
+  { icon: Linkedin, label: "LinkedIn", href: import.meta.env.VITE_LINKEDIN_LINK },
+  { icon: Facebook, label: "Facebook", href: import.meta.env.VITE_FACEBOOK_LINK },
+  { icon: Twitter, label: "Twitter", href: import.meta.env.VITE_TWITTER_LINK },
 ];
 
 const Footer = () => {
@@ -41,6 +41,8 @@ const Footer = () => {
                   <a
                     key={social.label}
                     href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     aria-label={social.label}
                     className="w-9 h-9 flex items-center justify-center border border-border text-text-secondary rounded-md hover:border-primary hover:text-primary hover:bg-primary/10 transition-all"
                   >

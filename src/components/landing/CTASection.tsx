@@ -19,13 +19,16 @@ const CTASection = () => {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-0 justify-center pt-6">
-          <motion.button
+          <motion.a
+            href={import.meta.env.VITE_RIGEL_BARBER_PRODUCT}
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center justify-center h-14 sm:h-20 px-8 sm:px-16 bg-primary text-primary-foreground text-sm sm:text-lg font-black uppercase tracking-widest hover:bg-foreground transition-all animate-pulse-glow"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
             Criar Conta Agora
-          </motion.button>
+          </motion.a>
         </div>
 
 

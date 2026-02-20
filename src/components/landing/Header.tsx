@@ -36,9 +36,14 @@ const Header = () => {
               Sobre Nós
             </Link>
           </nav>
-          <button className="flex items-center justify-center border-2 border-primary px-8 h-10 bg-primary text-primary-foreground text-xs font-black uppercase tracking-widest hover:bg-background hover:text-primary transition-all">
+          <a
+            href={import.meta.env.VITE_ORION_LOGIN}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center border-2 border-primary px-8 h-10 bg-primary text-primary-foreground text-xs font-black uppercase tracking-widest hover:bg-background hover:text-primary transition-all"
+          >
             Login
-          </button>
+          </a>
         </div>
 
         <button
@@ -69,9 +74,14 @@ const Header = () => {
               Sobre Nós
             </Link>
           </nav>
-          <button className="flex items-center justify-center border-2 border-primary px-8 h-12 bg-primary text-primary-foreground text-sm font-black uppercase tracking-widest">
+          <a
+            href={import.meta.env.VITE_ORION_LOGIN}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center border-2 border-primary px-8 h-10 bg-primary text-primary-foreground text-xs font-black uppercase tracking-widest hover:bg-background hover:text-primary transition-all"
+          >
             Login
-          </button>
+          </a>
         </div>
       )}
     </header>

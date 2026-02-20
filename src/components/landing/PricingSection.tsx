@@ -191,11 +191,14 @@ const PricingSection = () => {
                 <td className="px-6 py-6"></td>
                 {plans.map((plan) => (
                   <td key={plan.name} className="px-6 py-6 border-l border-border">
-                    <button
-                      className="w-full py-3 text-xs font-black uppercase tracking-widest rounded-md transition-all bg-primary text-primary-foreground hover:brightness-110"
+                    <a
+                      href={import.meta.env.VITE_RIGEL_BARBER_PRODUCT}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block w-full py-3 text-xs font-black uppercase tracking-widest rounded-md transition-all bg-primary text-primary-foreground text-center hover:brightness-110"
                     >
                       {plan.cta}
-                    </button>
+                    </a>
                   </td>
                 ))}
               </tr>
@@ -263,11 +266,14 @@ const PricingSection = () => {
 
                 {/* CTA at bottom */}
                 <div className="p-6 border-t border-border">
-                  <button
-                    className="w-full py-3 text-xs font-black uppercase tracking-widest rounded-md transition-all bg-primary text-primary-foreground hover:brightness-110"
+                  <a
+                    href={import.meta.env.VITE_RIGEL_BARBER_PRODUCT}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full py-3 text-xs font-black uppercase tracking-widest rounded-md transition-all bg-primary text-primary-foreground text-center hover:brightness-110"
                   >
                     {plan.cta}
-                  </button>
+                  </a>
                 </div>
 
 
