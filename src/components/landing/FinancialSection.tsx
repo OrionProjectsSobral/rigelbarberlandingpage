@@ -31,17 +31,17 @@ const tabLabels = ["Visão Geral", "Equipe", "Serviços", "Produtos"];
 /* ============ SHARED HEADER ============ */
 
 const DashHeader = () => (
-  <div className="flex items-center justify-between px-5 pt-5 pb-3">
-    <div>
-      <h3 className="text-foreground text-sm font-black">Estatísticas</h3>
-      <p className="text-primary text-[8px] font-medium">
+  <div className="flex items-center justify-between px-6 pt-5 pb-4 border-b border-border/50 mb-4">
+    <div className="flex flex-col gap-1">
+      <h3 className="text-foreground text-sm font-bold tracking-tight text-left border-none p-0 inline">Estatísticas</h3>
+      <p className="text-text-secondary text-[10px] font-medium text-left border-none p-0">
         Acompanhe o desempenho do seu negócio
       </p>
     </div>
-    <div className="flex items-center gap-1.5 border border-border rounded-sm px-3 py-1.5 text-text-secondary text-[8px] font-bold">
-      <CalendarDays size={10} />
+    <div className="flex items-center gap-2 border border-border bg-surface/30 hover:bg-surface rounded-md px-3 py-1.5 text-text-secondary hover:text-foreground transition-colors cursor-pointer text-[9px] font-medium shadow-sm">
+      <CalendarDays size={12} />
       Últimos 30 dias
-      <ChevronDown size={10} />
+      <ChevronDown size={12} ml-1 />
     </div>
   </div>
 );
@@ -49,13 +49,13 @@ const DashHeader = () => (
 /* ============ TAB BAR ============ */
 
 const TabBar = ({ active }: { active: number }) => (
-  <div className="grid grid-cols-4 mx-4 mb-4 bg-surface rounded-sm overflow-hidden border border-border">
+  <div className="flex p-1 mx-6 mb-4 bg-surface/40 rounded-md border border-border">
     {tabLabels.map((tab, i) => (
       <div
         key={tab}
-        className={`py-2 text-center text-[8px] font-bold uppercase tracking-wider transition-all ${i === active
-          ? "bg-primary text-primary-foreground"
-          : "text-text-secondary"
+        className={`flex-1 py-1.5 text-center text-[9px] font-semibold transition-all rounded-sm cursor-pointer ${i === active
+          ? "bg-background text-foreground shadow-sm border border-border/50"
+          : "text-text-secondary hover:text-foreground"
           }`}
       >
         {tab}
@@ -67,34 +67,36 @@ const TabBar = ({ active }: { active: number }) => (
 /* ============ SLIDE 1 — VISÃO GERAL ============ */
 
 const SlideVisaoGeral = () => (
-  <div className="flex flex-col h-full bg-background border border-border rounded-md overflow-hidden">
+  <div className="flex flex-col h-full bg-background border border-border rounded-xl overflow-hidden shadow-sm">
     <DashHeader />
     <TabBar active={0} />
 
-    <div className="flex-1 px-4 pb-4 flex flex-col gap-3 overflow-y-auto scrollbar-thin">
+    <div className="flex-1 px-6 pb-6 flex flex-col gap-5 overflow-y-auto scrollbar-thin">
       {/* KPI Cards */}
-      <div className="grid grid-cols-5 gap-2">
+      <div className="grid grid-cols-5 gap-3">
         {[
-          { label: "Faturamento Bruto", value: "R$ 26.046,00", icon: DollarSign, change: "+100,0%", sub: "vs período anterior", color: "text-primary" },
-          { label: "Despesas + Comissões", value: "- R$ 9.434,20", icon: TrendingDown, change: null, sub: "Despesas: R$ 420 | Comissões: R$ 9.014,2", color: "text-destructive" },
-          { label: "Lucro Líquido", value: "R$ 16.611,80", icon: TrendingUp, change: null, sub: "Receita - Comissões - Despesas", color: "text-primary" },
-          { label: "Total de Atendimentos", value: "6", icon: Users, change: "+100,0%", sub: "vs período anterior", color: "text-purple-400" },
-          { label: "Ticket Médio", value: "R$ 4.341,00", icon: Ticket, change: "+100,0%", sub: "vs período anterior", color: "text-primary" },
+          { label: "Faturamento Bruto", value: "R$ 26.046,00", icon: DollarSign, change: "+10,0%", sub: "vs mês anterior", iconColor: "text-primary" },
+          { label: "Desp. + Comissões", value: "- R$ 9.434,20", icon: TrendingDown, change: null, sub: "Despesas / Comissões", iconColor: "text-destructive" },
+          { label: "Lucro Líquido", value: "R$ 16.611,80", icon: TrendingUp, change: null, sub: "Receita - Gastos", iconColor: "text-emerald-400" },
+          { label: "Atendimentos", value: "6", icon: Users, change: "+2", sub: "vs mês anterior", iconColor: "text-purple-400" },
+          { label: "Ticket Médio", value: "R$ 4.341,00", icon: Ticket, change: "+5,0%", sub: "vs mês anterior", iconColor: "text-sky-400" },
         ].map((kpi) => {
           const Icon = kpi.icon;
           return (
-            <div key={kpi.label} className="border border-border rounded-sm p-2.5 flex flex-col gap-1.5">
+            <div key={kpi.label} className="border border-border/80 bg-surface/20 rounded-lg p-3 flex flex-col gap-2 relative overflow-hidden group">
               <div className="flex items-center justify-between">
-                <span className="text-text-secondary text-[6px] font-bold uppercase tracking-wider leading-tight">{kpi.label}</span>
-                <Icon size={10} className={kpi.color} />
+                <span className="text-text-secondary text-[8px] font-medium tracking-wide uppercase">{kpi.label}</span>
+                <div className="p-1 bg-background rounded border border-border/50 group-hover:border-primary/30 transition-colors">
+                  <Icon size={10} className={kpi.iconColor} />
+                </div>
               </div>
-              <span className={`${kpi.color} text-[11px] font-black tracking-tight`}>{kpi.value}</span>
+              <span className={`text-foreground text-[11px] xl:text-[13px] font-bold tracking-tight`}>{kpi.value}</span>
               {kpi.change ? (
-                <span className="text-primary text-[6px] font-medium flex items-center gap-0.5">
-                  <TrendingUp size={7} /> {kpi.change} {kpi.sub}
+                <span className="text-emerald-400 text-[6px] xl:text-[7px] font-semibold flex items-center gap-1">
+                  <TrendingUp size={7} /> {kpi.change} <span className="text-text-secondary font-medium">{kpi.sub}</span>
                 </span>
               ) : (
-                <span className="text-text-secondary text-[5px] font-medium">{kpi.sub}</span>
+                <span className="text-text-secondary text-[6px] xl:text-[7px] font-medium leading-tight">{kpi.sub}</span>
               )}
             </div>
           );
@@ -102,21 +104,62 @@ const SlideVisaoGeral = () => (
       </div>
 
       {/* Revenue Chart */}
-      <div className="border border-border rounded-sm p-3 flex-1">
-        <div className="flex flex-col gap-0.5 mb-3">
-          <span className="text-foreground text-[9px] font-black">Tendência de Faturamento</span>
-          <span className="text-text-secondary text-[7px] font-medium">19/01/26 - 17/02/26</span>
+      <div className="border border-border/80 bg-surface/10 rounded-lg p-5 flex-1 relative flex flex-col">
+        <div className="flex flex-col gap-1 mb-6">
+          <span className="text-foreground text-[11px] font-bold tracking-tight">Tendência de Faturamento</span>
+          <span className="text-text-secondary text-[8px] font-medium">Histórico do período (19/01/26 - 17/02/26)</span>
         </div>
-        <div className="relative h-28 flex items-end">
-          <div className="absolute left-0 top-0 bottom-0 flex flex-col justify-between text-text-secondary text-[6px] font-bold pr-2">
-            <span>R$28000</span><span>R$21000</span><span>R$14000</span><span>R$7000</span><span>R$0</span>
+
+        <div className="relative flex-1 flex items-end">
+          <div className="absolute left-0 top-0 bottom-6 flex flex-col justify-between text-text-secondary text-[7px] font-medium pr-3">
+            <span>R$ 28k</span><span>R$ 21k</span><span>R$ 14k</span><span>R$ 7k</span><span>R$ 0</span>
           </div>
-          <div className="ml-10 flex-1 h-full relative border-l border-b border-border">
+
+          <div className="ml-10 flex-1 h-full relative mb-6">
             <div className="absolute inset-0 grid grid-rows-4">
-              {[0, 1, 2, 3].map((i) => (<div key={i} className="border-t border-border/30" />))}
+              {[0, 1, 2, 3].map((i) => (<div key={i} className="border-t border-border/40 border-dashed" />))}
+              <div className="border-t border-border/80" />
             </div>
-            <div className="absolute left-1/2 top-[15%] w-2.5 h-2.5 bg-primary rounded-full" />
-            <div className="absolute bottom-0 left-1/2 text-text-secondary text-[6px] font-bold -translate-x-1/2">16/02</div>
+
+            <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 w-full h-[calc(100%-24px)] overflow-visible">
+              <defs>
+                <linearGradient id="chart-gradient" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.25" />
+                  <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="0.0" />
+                </linearGradient>
+              </defs>
+              <path
+                d="M 0 85 C 7.5 85, 7.5 70, 15 70 C 22.5 70, 22.5 75, 30 75 C 37.5 75, 37.5 50, 45 50 C 52.5 50, 52.5 55, 60 55 C 67.5 55, 67.5 30, 75 30 C 81.5 30, 81.5 40, 88 40 C 94 40, 94 15, 100 15 L 100 100 L 0 100 Z"
+                fill="url(#chart-gradient)"
+              />
+              <path
+                d="M 0 85 C 7.5 85, 7.5 70, 15 70 C 22.5 70, 22.5 75, 30 75 C 37.5 75, 37.5 50, 45 50 C 52.5 50, 52.5 55, 60 55 C 67.5 55, 67.5 30, 75 30 C 81.5 30, 81.5 40, 88 40 C 94 40, 94 15, 100 15"
+                fill="none"
+                stroke="hsl(var(--primary))"
+                strokeWidth="1.5"
+                vectorEffect="non-scaling-stroke"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+
+
+            {/* Last active point with pulse */}
+            <div className="absolute left-[100%] top-[15%] w-2 h-2 bg-primary rounded-full shadow-[0_0_8px_hsl(var(--primary))] -ml-[4px] -mt-[4px] z-10">
+              <div className="absolute inset-0 bg-primary rounded-full animate-ping opacity-75"></div>
+            </div>
+
+            <div className="absolute top-[3%] right-3 bg-foreground text-background text-[7px] font-bold px-2 py-1 rounded shadow-md opacity-100 z-20">
+              R$ 26.046
+            </div>
+
+            <div className="absolute -bottom-6 left-0 right-0 flex justify-between text-text-secondary text-[7px] font-medium pt-2 tabular-nums">
+              <span>19/01</span>
+              <span>26/01</span>
+              <span>02/02</span>
+              <span>09/02</span>
+              <span>16/02</span>
+            </div>
           </div>
         </div>
       </div>
