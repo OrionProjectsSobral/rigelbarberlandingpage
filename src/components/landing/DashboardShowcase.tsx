@@ -407,14 +407,14 @@ const DashboardShowcase = () => {
 
         {/* Device showcase */}
         <motion.div
-          className="relative flex justify-center items-center py-8 md:py-16"
+          className="relative flex justify-center items-center py-8 sm:py-16 md:py-24"
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
           {/* Desktop mockup */}
-          <div className="relative w-full max-w-4xl">
+          <div className="relative w-full max-w-4xl mb-12 sm:mb-20 md:mb-24 lg:mb-28">
             <div className="bg-background border border-border p-2 md:p-4 glow-primary rounded-md">
               {/* Browser bar */}
               <div className="flex items-center gap-2 pb-2 md:pb-3 border-b border-border mb-2 md:mb-3">
@@ -443,7 +443,7 @@ const DashboardShowcase = () => {
 
             {/* Mobile mockup - overlapping */}
             <motion.div
-              className="absolute -right-2 sm:-right-4 md:right-8 -bottom-6 sm:-bottom-8 md:-bottom-12 w-20 sm:w-32 md:w-44 lg:w-52"
+              className="absolute right-0 sm:-right-4 md:-right-8 lg:-right-16 -bottom-10 sm:-bottom-16 md:-bottom-20 w-[115px] sm:w-[160px] md:w-[220px] lg:w-[260px]"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

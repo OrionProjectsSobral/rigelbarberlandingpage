@@ -31,17 +31,17 @@ const tabLabels = ["Visão Geral", "Equipe", "Serviços", "Produtos"];
 /* ============ SHARED HEADER ============ */
 
 const DashHeader = () => (
-  <div className="flex items-center justify-between px-6 pt-5 pb-4 border-b border-border/50 mb-4">
-    <div className="flex flex-col gap-1">
-      <h3 className="text-foreground text-sm font-bold tracking-tight text-left border-none p-0 inline">Estatísticas</h3>
-      <p className="text-text-secondary text-[10px] font-medium text-left border-none p-0">
+  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between px-4 sm:px-6 pt-4 sm:pt-5 pb-3 sm:pb-4 border-b border-border/50 mb-3 sm:mb-4 gap-2 sm:gap-0">
+    <div className="flex flex-col gap-0.5 sm:gap-1">
+      <h3 className="text-foreground text-xs sm:text-sm font-bold tracking-tight text-left border-none p-0 inline">Estatísticas</h3>
+      <p className="text-text-secondary text-[8px] sm:text-[10px] font-medium text-left border-none p-0">
         Acompanhe o desempenho do seu negócio
       </p>
     </div>
-    <div className="flex items-center gap-2 border border-border bg-surface/30 hover:bg-surface rounded-md px-3 py-1.5 text-text-secondary hover:text-foreground transition-colors cursor-pointer text-[9px] font-medium shadow-sm">
-      <CalendarDays size={12} />
+    <div className="flex items-center gap-1.5 sm:gap-2 border border-border bg-surface/30 hover:bg-surface rounded-md px-2 sm:px-3 py-1 sm:py-1.5 text-text-secondary hover:text-foreground transition-colors cursor-pointer text-[8px] sm:text-[9px] font-medium shadow-sm">
+      <CalendarDays className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
       Últimos 30 dias
-      <ChevronDown size={12} ml-1 />
+      <ChevronDown className="w-2.5 h-2.5 sm:w-3 sm:h-3 ml-0.5 sm:ml-1" />
     </div>
   </div>
 );
@@ -49,11 +49,11 @@ const DashHeader = () => (
 /* ============ TAB BAR ============ */
 
 const TabBar = ({ active }: { active: number }) => (
-  <div className="flex p-1 mx-6 mb-4 bg-surface/40 rounded-md border border-border">
+  <div className="flex p-0.5 sm:p-1 mx-4 sm:mx-6 mb-3 sm:mb-4 bg-surface/40 rounded-md border border-border overflow-x-auto scrollbar-none">
     {tabLabels.map((tab, i) => (
       <div
         key={tab}
-        className={`flex-1 py-1.5 text-center text-[9px] font-semibold transition-all rounded-sm cursor-pointer ${i === active
+        className={`flex-1 min-w-[65px] sm:min-w-[80px] py-1.5 sm:py-1.5 text-center text-[7.5px] sm:text-[9px] font-semibold transition-all rounded-sm cursor-pointer whitespace-nowrap px-1 sm:px-0 ${i === active
           ? "bg-background text-foreground shadow-sm border border-border/50"
           : "text-text-secondary hover:text-foreground"
           }`}
@@ -73,7 +73,7 @@ const SlideVisaoGeral = () => (
 
     <div className="flex-1 px-6 pb-6 flex flex-col gap-5 overflow-y-auto scrollbar-thin">
       {/* KPI Cards */}
-      <div className="grid grid-cols-5 gap-3">
+      <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3">
         {[
           { label: "Faturamento Bruto", value: "R$ 26.046,00", icon: DollarSign, change: "+10,0%", sub: "vs mês anterior", iconColor: "text-primary" },
           { label: "Desp. + Comissões", value: "- R$ 9.434,20", icon: TrendingDown, change: null, sub: "Despesas / Comissões", iconColor: "text-destructive" },
@@ -104,10 +104,10 @@ const SlideVisaoGeral = () => (
       </div>
 
       {/* Revenue Chart */}
-      <div className="border border-border/80 bg-surface/10 rounded-lg p-5 flex-1 relative flex flex-col">
-        <div className="flex flex-col gap-1 mb-6">
-          <span className="text-foreground text-[11px] font-bold tracking-tight">Tendência de Faturamento</span>
-          <span className="text-text-secondary text-[8px] font-medium">Histórico do período (19/01/26 - 17/02/26)</span>
+      <div className="border border-border/80 bg-surface/10 rounded-lg p-4 sm:p-5 flex-1 relative flex flex-col min-h-[160px] sm:min-h-[220px]">
+        <div className="flex flex-col gap-0.5 sm:gap-1 mb-4 sm:mb-6">
+          <span className="text-foreground text-[10px] sm:text-[11px] font-bold tracking-tight">Tendência de Faturamento</span>
+          <span className="text-text-secondary text-[7px] sm:text-[8px] font-medium">Histórico do período (19/01/26 - 17/02/26)</span>
         </div>
 
         <div className="relative flex-1 flex items-end">
@@ -208,36 +208,38 @@ const SlideEquipe = () => {
             <span className="text-foreground text-[9px] font-black">Desempenho Detalhado</span>
             <span className="text-text-secondary text-[7px] font-medium">Ranking por faturamento gerado</span>
           </div>
-          <table className="w-full">
-            <thead>
-              <tr className="text-text-secondary text-[7px] font-bold uppercase tracking-wider border-b border-border">
-                <th className="text-left pb-2">Profissional</th>
-                <th className="text-center pb-2">Qtd. Cortes</th>
-                <th className="text-center pb-2">Faturamento</th>
-                <th className="text-right pb-2">Comissão</th>
-              </tr>
-            </thead>
-            <tbody>
-              {[
-                { name: "Pablo Henrique", cuts: 1, revenue: "R$ 12.000", commission: "R$ 6.000", rank: 1 },
-                { name: "Gabe", cuts: 2, revenue: "R$ 11.000", commission: "R$ 1.100", rank: 2 },
-                { name: "Zulio", cuts: 2, revenue: "R$ 2.000", commission: "R$ 1.000", rank: 3 },
-              ].map((row) => (
-                <tr key={row.name} className="border-b border-border/30">
-                  <td className="py-2">
-                    <div className="flex items-center gap-2">
-                      {row.rank === 1 && <Crown size={10} className="text-primary" />}
-                      <div className="w-5 h-5 rounded-full bg-muted border border-border flex items-center justify-center text-primary text-[7px] font-black">{row.name.charAt(0)}</div>
-                      <span className="text-foreground text-[8px] font-bold">{row.name}</span>
-                    </div>
-                  </td>
-                  <td className="text-center text-foreground text-[8px] font-medium">{row.cuts}</td>
-                  <td className="text-center text-primary text-[8px] font-bold">{row.revenue}</td>
-                  <td className="text-right text-foreground text-[8px] font-medium">{row.commission}</td>
+          <div className="overflow-x-auto scrollbar-thin">
+            <table className="w-full min-w-[500px]">
+              <thead>
+                <tr className="text-text-secondary text-[7px] font-bold uppercase tracking-wider border-b border-border">
+                  <th className="text-left pb-2">Profissional</th>
+                  <th className="text-center pb-2">Qtd. Cortes</th>
+                  <th className="text-center pb-2">Faturamento</th>
+                  <th className="text-right pb-2">Comissão</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {[
+                  { name: "Pablo Henrique", cuts: 1, revenue: "R$ 12.000", commission: "R$ 6.000", rank: 1 },
+                  { name: "Gabe", cuts: 2, revenue: "R$ 11.000", commission: "R$ 1.100", rank: 2 },
+                  { name: "Zulio", cuts: 2, revenue: "R$ 2.000", commission: "R$ 1.000", rank: 3 },
+                ].map((row) => (
+                  <tr key={row.name} className="border-b border-border/30">
+                    <td className="py-2">
+                      <div className="flex items-center gap-2">
+                        {row.rank === 1 && <Crown size={10} className="text-primary" />}
+                        <div className="w-5 h-5 rounded-full bg-muted border border-border flex items-center justify-center text-primary text-[7px] font-black">{row.name.charAt(0)}</div>
+                        <span className="text-foreground text-[8px] font-bold">{row.name}</span>
+                      </div>
+                    </td>
+                    <td className="text-center text-foreground text-[8px] font-medium">{row.cuts}</td>
+                    <td className="text-center text-primary text-[8px] font-bold">{row.revenue}</td>
+                    <td className="text-right text-foreground text-[8px] font-medium">{row.commission}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
@@ -357,33 +359,35 @@ const SlideProdutos = () => (
           <span className="text-foreground text-[9px] font-black">Desempenho de Vendas</span>
           <span className="text-text-secondary text-[7px] font-medium">Ranking por quantidade vendida</span>
         </div>
-        <table className="w-full">
-          <thead>
-            <tr className="text-text-secondary text-[7px] font-bold uppercase tracking-wider border-b border-border">
-              <th className="text-left pb-2">Produto</th>
-              <th className="text-center pb-2">Vendidos</th>
-              <th className="text-center pb-2">Receita</th>
-              <th className="text-right pb-2">Estoque</th>
-            </tr>
-          </thead>
-          <tbody>
-            {[
-              { name: "Pomada Modeladora", sold: 3, revenue: "R$ 36", stock: 3, stockLow: true },
-              { name: "Óleo para Barba", sold: 1, revenue: "R$ 10", stock: 8, stockLow: true },
-            ].map((row) => (
-              <tr key={row.name} className="border-b border-border/30">
-                <td className="py-2 text-foreground text-[8px] font-bold">{row.name}</td>
-                <td className="text-center text-foreground text-[8px] font-bold">{row.sold}</td>
-                <td className="text-center text-primary text-[8px] font-bold">{row.revenue}</td>
-                <td className="text-right">
-                  <span className={`px-2 py-0.5 text-[7px] font-bold rounded-full ${row.stockLow ? "bg-destructive/20 text-destructive" : "bg-primary/10 text-primary"}`}>
-                    {row.stock} un
-                  </span>
-                </td>
+        <div className="overflow-x-auto scrollbar-thin">
+          <table className="w-full min-w-[400px]">
+            <thead>
+              <tr className="text-text-secondary text-[7px] font-bold uppercase tracking-wider border-b border-border">
+                <th className="text-left pb-2">Produto</th>
+                <th className="text-center pb-2">Vendidos</th>
+                <th className="text-center pb-2">Receita</th>
+                <th className="text-right pb-2">Estoque</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {[
+                { name: "Pomada Modeladora", sold: 3, revenue: "R$ 36", stock: 3, stockLow: true },
+                { name: "Óleo para Barba", sold: 1, revenue: "R$ 10", stock: 8, stockLow: true },
+              ].map((row) => (
+                <tr key={row.name} className="border-b border-border/30">
+                  <td className="py-2 text-foreground text-[8px] font-bold">{row.name}</td>
+                  <td className="text-center text-foreground text-[8px] font-bold">{row.sold}</td>
+                  <td className="text-center text-primary text-[8px] font-bold">{row.revenue}</td>
+                  <td className="text-right">
+                    <span className={`px-2 py-0.5 text-[7px] font-bold rounded-full ${row.stockLow ? "bg-destructive/20 text-destructive" : "bg-primary/10 text-primary"}`}>
+                      {row.stock} un
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -478,12 +482,12 @@ const FinancialSection = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           {/* Tab indicators */}
-          <div className="flex items-center gap-2 justify-center flex-wrap">
+          <div className="flex items-center gap-2 justify-start md:justify-center flex-nowrap md:flex-wrap overflow-x-auto scrollbar-none pb-2 -mx-4 px-4 md:mx-0 md:px-0">
             {slides.map((slide, index) => (
               <button
                 key={slide.label}
                 onClick={() => scrollTo(index)}
-                className={`px-3 py-2 text-[9px] font-black uppercase tracking-widest border rounded-sm transition-all cursor-pointer ${current === index
+                className={`shrink-0 px-3 py-2 text-[9px] font-black uppercase tracking-widest border rounded-sm transition-all cursor-pointer ${current === index
                   ? "border-primary bg-primary/10 text-primary"
                   : "border-border text-text-secondary hover:border-primary/40 hover:text-foreground"
                   }`}
@@ -500,7 +504,7 @@ const FinancialSection = () => {
                 const SlideComponent = slide.component;
                 return (
                   <CarouselItem key={i}>
-                    <div className="aspect-[4/3]">
+                    <div className="h-[460px] sm:h-[500px] md:h-auto md:aspect-[4/3]">
                       <SlideComponent />
                     </div>
                   </CarouselItem>

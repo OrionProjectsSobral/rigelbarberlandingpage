@@ -14,7 +14,7 @@ const Index = () => {
   return (
     <div className="relative flex flex-col min-h-screen w-full dark">
       <Header />
-      <main className="flex-1">
+      <main className="flex-1 w-full overflow-x-hidden">
         <HeroSection />
         <FeaturesSection />
         <DashboardShowcase />

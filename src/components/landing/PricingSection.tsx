@@ -53,10 +53,18 @@ const features: FeatureRow[] = [
 
 const CellValue = ({ value }: { value: FeatureValue }) => {
   if (value === true) {
-    return <Check size={16} className="text-primary mx-auto" />;
+    return (
+      <div className="flex justify-center md:block">
+        <Check size={16} className="text-primary md:mx-auto" />
+      </div>
+    );
   }
   if (value === false) {
-    return <Minus size={16} className="text-text-secondary/40 mx-auto" />;
+    return (
+      <div className="flex justify-center md:block">
+        <Minus size={16} className="text-text-secondary/40 md:mx-auto" />
+      </div>
+    );
   }
   return (
     <span className="text-foreground text-sm font-medium">{value}</span>
